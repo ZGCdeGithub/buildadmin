@@ -5,22 +5,30 @@ export const loading = {
     show: () => {
         const bodys: Element = document.body
         const div = document.createElement('div')
-        div.className = 'loading-small-circles'
+        div.className = 'block-loading'
         div.innerHTML = `
-            <div class="loading-inner">
-                <div class="small-circles circle-1"></div>
-                <div class="small-circles circle-2"></div>
-                <div class="small-circles circle-3"></div>
-                <div class="small-circles circle-4"></div>
-                <div class="small-circles circle-5"></div>
+            <div class="block-loading-box">
+                <div class="block-loading-box-warp">
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                    <div class="block-loading-box-item"></div>
+                </div>
             </div>
         `
         bodys.insertBefore(div, bodys.childNodes[0])
     },
     hide: () => {
         nextTick(() => {
-            const el = document.querySelector('.loading-small-circles')
-            el && el.parentNode?.removeChild(el)
+            setTimeout(() => {
+                const el = document.querySelector('.block-loading')
+                el && el.parentNode?.removeChild(el)
+            }, 1000)
         })
     },
 }

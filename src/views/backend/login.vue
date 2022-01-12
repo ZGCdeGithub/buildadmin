@@ -113,7 +113,9 @@ const rules = reactive({
 })
 
 onMounted(() => {
-    pageBubble.init()
+    setTimeout(() => {
+        pageBubble.init()
+    }, 1000)
     const vm: any = getCurrentInstance()
     if (form.username === '') {
         vm.ctx.$refs.username.focus()
