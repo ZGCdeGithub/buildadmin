@@ -1,0 +1,4 @@
+// 修复 Chrome 浏览器输入框内选中字符行高异常的bug
+.el-input--large .el-input__inner {
+    line-height: 38px;
+}
