@@ -61,4 +61,19 @@
     color: #fff;
     text-decoration: none;
 }
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90vw;
+    }
+    .fbi {
+        font-size: 50px;
+        padding: 10px 30px;
+    }
+    .warning {
+        font-size: 16px;
+    }
+    .warning:first-letter {
+        font-size: 30px;
+    }
+}
 </style>
