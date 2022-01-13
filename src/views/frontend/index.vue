@@ -1,1 +1,3 @@
-<template>index/index.vue</template>
+<template>
+    <div>index/index.vue</div>
+</template>
