@@ -2,18 +2,26 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { store, key } from './store'
+import { loadLang } from '/@/lang/index'
 import { registerElIcons } from '/@/utils/common'
-
 import ElementPlus from 'element-plus'
+
 import 'element-plus/dist/index.css'
 import '/@/styles/base.scss'
 
-const app = createApp(App)
+async function start() {
+    const app = createApp(App)
 
-registerElIcons(app)
+    // 全局注册element-icon
+    registerElIcons(app)
 
-app.use(router)
-app.use(store, key)
-app.use(ElementPlus)
+    // 全局语言包加载
+    const i18n = await loadLang(app)
 
-app.mount('#app')
+    app.use(router)
+    app.use(store, key)
+    app.use(ElementPlus, { i18n: i18n.global.t })
+
+    app.mount('#app')
+}
+start()
