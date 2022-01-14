@@ -6,7 +6,7 @@ import { RouteRecordRaw } from 'vue-router'
 const staticRoutes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        name: 'home',
+        name: '/',
         component: () => import('/@/views/frontend/index.vue'),
         meta: {
             title: '首页',

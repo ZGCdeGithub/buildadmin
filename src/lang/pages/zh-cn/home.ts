@@ -1,3 +1,3 @@
 export default {
-    index: '这里是index的语言包'
+    index: '这里是index的语言包-home.ts'
 }
