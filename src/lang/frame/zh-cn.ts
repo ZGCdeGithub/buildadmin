@@ -1,6 +1,6 @@
 export default {
     home: '首页',
     layout: {
-        seting: '设置'
-    }
+        seting: '设置',
+    },
 }
