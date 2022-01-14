@@ -3,13 +3,17 @@
  */
 import { RouteRecordRaw } from 'vue-router'
 
+const title = (name: string): string => {
+    return `pagesTitle.${name}`
+}
+
 const staticRoutes: Array<RouteRecordRaw> = [
     {
         path: '/',
         name: '/',
         component: () => import('/@/views/frontend/index.vue'),
         meta: {
-            title: '首页',
+            title: title('home'),
             loading: true,
         },
     },
@@ -18,7 +22,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
         name: 'admin',
         component: () => import('/@/views/backend/index.vue'),
         meta: {
-            title: '后台',
+            title: title('admin'),
         },
     },
     {
@@ -26,7 +30,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
         name: 'adminLogin',
         component: () => import('/@/views/backend/login.vue'),
         meta: {
-            title: '登录',
+            title: title('adminLogin'),
             loading: true,
         },
     },
@@ -39,7 +43,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
         name: 'notFound',
         component: () => import('/@/views/common/error/404.vue'),
         meta: {
-            title: '页面找不到了',
+            title: title('notFound'),
         },
     },
     {
@@ -47,7 +51,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
         name: 'noPower',
         component: () => import('/@/views/common/error/401.vue'),
         meta: {
-            title: '无访问权限',
+            title: title('noPower'),
         },
     },
 ]

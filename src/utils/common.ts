@@ -26,9 +26,12 @@ export function loadCss(url: string): void {
 /**
  * 设置浏览器标题
  */
-export function setTitle() {
+export function setTitle(t: any = null) {
     nextTick(() => {
         let webTitle = router.currentRoute.value.meta.title as any
+        if (t) {
+            webTitle = t(webTitle)
+        }
         document.title = `${webTitle}`
     })
 }

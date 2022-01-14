@@ -14,7 +14,7 @@ import { store } from '/@/store/index'
 const route = useRoute()
 
 // 初始化 element 的语言包
-const { getLocaleMessage } = useI18n()
+const { t, getLocaleMessage } = useI18n()
 const lang = getLocaleMessage(store.getters['config/getStateOrCache']('defaultLang')) as any
 
 onMounted(() => {
@@ -25,7 +25,7 @@ onMounted(() => {
 watch(
     () => route.path,
     () => {
-        setTitle()
+        setTitle(t)
     }
 )
 </script>
