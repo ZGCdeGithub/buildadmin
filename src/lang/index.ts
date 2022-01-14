@@ -21,7 +21,7 @@ const assignLocale: assignLocale = {
 }
 
 export async function loadLang(app: App) {
-    const locale = 'zh-cn'
+    const locale = store.getters['config/getStateOrCache']('defaultLang')
 
     // 加载框架语言包
     const lang = await import(`./frame/${locale}.ts`)
@@ -51,7 +51,7 @@ export async function loadLang(app: App) {
         locale: locale,
         legacy: false, // 组合式api
         globalInjection: true, // 挂载$t,$d等到全局
-        fallbackLocale: 'zh-cn',
+        fallbackLocale: store.state.config.fallbackLang,
         messages,
     })
 
