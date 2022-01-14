@@ -3,16 +3,16 @@
         <div class="container">
             <div class="fbi">401 WARNING</div>
             <div class="warning">
-                这不是你想要的，但我们是认真的。我只是想用一种特殊的方式告诉你，你无权访问此页面，或者该文件无效。您可以联系网站管理员以更快地解决问题，或返回网站首页浏览其他页面。
+                {{ $t('401.noPowerTip') }}
             </div>
             <div class="page-footer">
                 <el-button-group>
                     <el-button size="large" type="info">
-                        <router-link class="stopcode-a" to="/">返回首页</router-link>
+                        <router-link class="stopcode-a" to="/">{{ $t('Return to home page') }}</router-link>
                     </el-button>
                     <el-button size="large" type="info">
                         <router-link class="stopcode-a" to="">
-                            <span @click="$router.back()">返回上一页</span>
+                            <span @click="$router.back()">{{ $t('Back to previous page') }}</span>
                         </router-link>
                     </el-button>
                 </el-button-group>

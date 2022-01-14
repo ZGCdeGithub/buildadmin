@@ -2,9 +2,9 @@
     <div class="page">
         <div class="container">
             <div class="font-h1">:(</div>
-            <div class="tip">你的网页遇到了一些问题，系统正在优化和上报故障信息，我们在未来将改善和减少这种情况的发生.</div>
+            <div class="tip">{{ $t('404.problems tip') }}</div>
             <div class="complete">
-                完成 <span class="percentage">{{ complete }}</span
+                {{ $t('complete') }} <span class="percentage">{{ complete }}</span
                 >%
             </div>
             <div class="details">
@@ -12,12 +12,12 @@
                     <img src="~/assets/qr.png" alt="QR Code" />
                 </div>
                 <div class="stopcode">
-                    <div class="stopcode-text">我们将在完成后自动返回到上一页。</div>
+                    <div class="stopcode-text">{{ $t('404.We will automatically return to the previous page when we are finished') }}</div>
                     <div class="stopcode-text">
                         <router-link class="stopcode-a" to="">
-                            <span @click="$router.back()">返回上一页</span>
+                            <span @click="$router.back()">{{ $t('Back to previous page') }}</span>
                         </router-link>
-                        <router-link class="stopcode-a" to="/">返回首页</router-link>
+                        <router-link class="stopcode-a" to="/">{{ $t('Return to home page') }}</router-link>
                     </div>
                 </div>
             </div>

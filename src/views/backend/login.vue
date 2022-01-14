@@ -13,14 +13,26 @@
                     <div class="content">
                         <el-form ref="formRef" :rules="rules" size="large" :model="form">
                             <el-form-item prop="username">
-                                <el-input ref="username" type="text" clearable v-model="form.username" placeholder="请输入账号">
+                                <el-input
+                                    ref="username"
+                                    type="text"
+                                    clearable
+                                    v-model="form.username"
+                                    :placeholder="t('adminLogin.Please enter an account')"
+                                >
                                     <template #prefix>
                                         <i class="iconfont icon-user"></i>
                                     </template>
                                 </el-input>
                             </el-form-item>
                             <el-form-item prop="password">
-                                <el-input ref="password" v-model="form.password" type="password" placeholder="请输入密码" show-password>
+                                <el-input
+                                    ref="password"
+                                    v-model="form.password"
+                                    type="password"
+                                    :placeholder="t('adminLogin.Please input a password')"
+                                    show-password
+                                >
                                     <template #prefix>
                                         <i class="iconfont icon-unlock"></i>
                                     </template>
@@ -29,7 +41,14 @@
                             <el-form-item prop="code">
                                 <el-row :gutter="15">
                                     <el-col :span="18">
-                                        <el-input ref="code" type="text" placeholder="请输入验证码" v-model="form.code" clearable autocomplete="off">
+                                        <el-input
+                                            ref="code"
+                                            type="text"
+                                            :placeholder="t('adminLogin.Please enter the verification code')"
+                                            v-model="form.code"
+                                            clearable
+                                            autocomplete="off"
+                                        >
                                             <template #prefix>
                                                 <i class="iconfont icon-ellipsis"></i>
                                             </template>
@@ -42,10 +61,10 @@
                                     </el-col>
                                 </el-row>
                             </el-form-item>
-                            <el-checkbox v-model="form.keep" label="保持会话" size="default"></el-checkbox>
+                            <el-checkbox v-model="form.keep" :label="t('adminLogin.Hold session')" size="default"></el-checkbox>
                             <el-form-item>
                                 <el-button :loading="form.loading" class="submit-button" round type="primary" size="large" @click="onSubmit(formRef)">
-                                    登录
+                                    {{ t('adminLogin.Sign in') }}
                                 </el-button>
                             </el-form-item>
                         </el-form>
@@ -60,6 +79,7 @@
 import { getCurrentInstance, onMounted, onBeforeUnmount, reactive, ref } from 'vue'
 import * as pageBubble from '/@/utils/pageBubble'
 import type { ElForm } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 const form = reactive({
@@ -70,43 +90,45 @@ const form = reactive({
     loading: false,
 })
 
+const { t } = useI18n()
+
 // 表单验证规则
 const rules = reactive({
     username: [
         {
             required: true,
-            message: '请输入账号',
+            message: t('adminLogin.Please enter an account'),
             trigger: 'blur',
         },
         {
             min: 3,
-            message: '账号长度必须大于3位',
+            message: t('adminLogin.Account length must be greater than 3 digits'),
             trigger: 'blur',
         },
     ],
     password: [
         {
             required: true,
-            message: '请输入密码',
+            message: t('adminLogin.Please input a password'),
             trigger: 'blur',
         },
         {
             min: 6,
             max: 32,
-            message: '密码长度必须在6到32位之间',
+            message: t('adminLogin.Password length must be between 6 and 32 bits'),
             trigger: 'blur',
         },
     ],
     code: [
         {
             required: true,
-            message: '请输入验证码',
+            message: t('adminLogin.Please enter the verification code'),
             trigger: 'blur',
         },
         {
             min: 4,
             max: 6,
-            message: '验证码长度必须在4到6位之间',
+            message: t('adminLogin.The verification code length must be between 4 and 6 bits'),
             trigger: 'blur',
         },
     ],
