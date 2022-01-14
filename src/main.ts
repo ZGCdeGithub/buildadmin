@@ -5,6 +5,7 @@ import { store, key } from './store'
 import { loadLang } from '/@/lang/index'
 import { registerElIcons } from '/@/utils/common'
 import ElementPlus from 'element-plus'
+import mitt from 'mitt'
 
 import 'element-plus/dist/index.css'
 import '/@/styles/base.scss'
@@ -23,5 +24,7 @@ async function start() {
     app.use(ElementPlus, { i18n: i18n.global.t })
 
     app.mount('#app')
+
+    app.config.globalProperties.eventBus = mitt()
 }
 start()
