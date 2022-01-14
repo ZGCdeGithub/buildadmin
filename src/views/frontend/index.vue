@@ -2,7 +2,7 @@
     <div>
         <div>index/index.vue</div>
         <div>{{ defaultLang }}</div>
-        <div>{{ t(`layout.seting`) }}</div>
+        <div>{{ $t(`layout.seting`) }}</div>
         <el-date-picker type="date"></el-date-picker>
     </div>
 </template>
@@ -11,8 +11,10 @@
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import en from '/@/lang/frame/en'
+import { useRouter } from 'vue-router'
 // import messages from '/@/lang/pages/zh-cn/home'
 import { store } from '/@/store/index'
+import { editDefaultLang } from '/@/lang/index'
 
 /* const { t } = useI18n({
     locale: 'zh-cn',
@@ -25,9 +27,11 @@ const defaultLang = computed(() => {
     return store.getters['config/getStateOrCache']('defaultLang')
 })
 
-const { locale, t, messages } = useI18n()
-locale.value = 'en'
-console.log(messages.value)
+/* if (store.getters['config/getStateOrCache']('defaultLang') == 'zh-cn') {
+    setTimeout(() => {
+        editDefaultLang('en')
+    }, 5000)
+} */
 
 /* setTimeout(() => {
     store.commit('config/setAndCache', {

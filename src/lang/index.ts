@@ -73,3 +73,17 @@ function getLangFileMessage(mList: any) {
     }
     return msg
 }
+
+export function editDefaultLang(lang: string): void {
+    store.commit('config/setAndCache', {
+        name: 'defaultLang',
+        value: lang,
+    })
+
+    /*
+     * 语言包是按需加载的,比如默认语言为中文,则只在app实例内加载了中文语言包
+     * 查阅文档无数遍,无耐接受当前的 i18n 版本并不支持动态添加语言包(或需要在 setup 内动态添加,无法满足全局替换的需求)
+     * 故 reload;如果您有已经实现的无需一次性加载全部语言包且无需 reload 的方案,请一定@我
+     */
+    location.reload()
+}
