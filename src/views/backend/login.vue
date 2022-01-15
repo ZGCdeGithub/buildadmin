@@ -1,5 +1,18 @@
 <template>
     <div>
+        <div class="switch-language">
+            <el-dropdown size="large" :hide-timeout="50" placement="bottom-end" :hide-on-click="true">
+                <svg class="iconfont-icon switch-language-icon" aria-hidden="true">
+                    <use xlink:href="#icon-earth"></use>
+                </svg>
+                <template #dropdown>
+                    <el-dropdown-menu class="chang-lang">
+                        <el-dropdown-item @click="changLang('zh-cn')">中文简体</el-dropdown-item>
+                        <el-dropdown-item @click="changLang('en')">English</el-dropdown-item>
+                    </el-dropdown-menu>
+                </template>
+            </el-dropdown>
+        </div>
         <div id="bubble" class="bubble">
             <canvas id="bubble-canvas" class="bubble-canvas"></canvas>
         </div>
@@ -80,6 +93,7 @@ import { getCurrentInstance, onMounted, onBeforeUnmount, reactive, ref } from 'v
 import * as pageBubble from '/@/utils/pageBubble'
 import type { ElForm } from 'element-plus'
 import { useI18n } from 'vue-i18n'
+import { editDefaultLang } from '/@/lang/index'
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 const form = reactive({
@@ -152,6 +166,10 @@ onBeforeUnmount(() => {
     pageBubble.removeListeners()
 })
 
+const changLang = (lang: string) => {
+    editDefaultLang(lang)
+}
+
 const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
     if (!formEl) return
     formEl.validate((valid) => {
@@ -167,6 +185,16 @@ const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
 </script>
 
 <style scoped lang="scss">
+.switch-language {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+}
+.switch-language-icon {
+    font-size: 30px;
+    color: var(--color-secondary);
+}
 .bubble {
     overflow: hidden;
     background: url(/@/assets/bg.jpg) repeat;
@@ -231,5 +259,8 @@ const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
             margin-top: 0;
         }
     }
+}
+.chang-lang :deep(.el-dropdown-menu__item) {
+    justify-content: center;
 }
 </style>

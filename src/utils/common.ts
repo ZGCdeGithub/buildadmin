@@ -23,6 +23,13 @@ export function loadCss(url: string): void {
     document.getElementsByTagName('head')[0].appendChild(link)
 }
 
+/* 加载网络js文件 */
+export function loadJs(url: string): void {
+    let link = document.createElement('script')
+    link.src = url
+    document.body.appendChild(link)
+}
+
 /**
  * 设置浏览器标题
  */
