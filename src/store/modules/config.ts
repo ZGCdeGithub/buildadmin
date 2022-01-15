@@ -1,6 +1,7 @@
 import { Module } from 'vuex'
 import { ConfigStateTypes, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
+import { store } from '/@/store/index'
 
 interface setObj {
     name: string
@@ -14,15 +15,22 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
         defaultLang: 'zh-cn',
         // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
         fallbackLang: 'zh-cn',
+        // 本地缓存 Key
+        localKey: {
+            // 管理员资料
+            adminInfo: 'adminInfo',
+            // 全局配置
+            config: 'baConfig',
+        },
     },
     getters: {
         // 从 state 或者本地缓存获取配置项
-        getStateOrCache: (state) => (name: string) => {
-            const baConfig = Local.get('baConfig') || {}
+        getStateOrCache: (state: any) => (name: string) => {
+            const baConfig = Local.get(store.state.config.localKey.config) || {}
             if (baConfig[name]) {
-                return baConfig[name]
+                state[name] = baConfig[name]
             }
-            return state.defaultLang
+            return state[name]
         },
     },
     mutations: {
@@ -38,9 +46,9 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
         },
         // 设置单个配置项并缓存到本地存储
         setAndCache(state: any, data: setObj): void {
-            let baConfig = Local.get('baConfig') || {}
+            let baConfig = Local.get(store.state.config.localKey.config) || {}
             state[data.name] = baConfig[data.name] = data.value
-            Local.set('baConfig', baConfig)
+            Local.set(store.state.config.localKey.config, baConfig)
         },
     },
 }

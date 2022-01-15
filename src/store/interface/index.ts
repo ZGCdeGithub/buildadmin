@@ -4,9 +4,19 @@
 export interface ConfigStateTypes {
     defaultLang: string
     fallbackLang: string
+    localKey: {
+        adminInfo: string
+        config: string
+    }
+}
+
+// 管理员信息
+export interface AdminInfoStateTypes {
+    adminInfo: object
 }
 
 // 顶级类型声明
 export interface RootStateTypes {
     config: ConfigStateTypes
+    adminInfo: AdminInfoStateTypes
 }

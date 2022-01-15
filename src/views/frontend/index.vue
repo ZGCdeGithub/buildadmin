@@ -38,7 +38,7 @@ const defaultLang = computed(() => {
         name: 'defaultLang',
         value: 'en',
     })
-
+    console.log('设置了')
 }, 2000) */
 
 // console.log(store.getters['config/getStateOrCache']('defaultLang'))
