@@ -2,6 +2,7 @@
 // 变量名对应含义请在 ./modules/ 里边找
 
 export interface ConfigStateTypes {
+    adminLayout: string
     defaultLang: string
     fallbackLang: string
     localKey: {

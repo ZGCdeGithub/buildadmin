@@ -2,9 +2,7 @@
     <div>
         <div class="switch-language">
             <el-dropdown size="large" :hide-timeout="50" placement="bottom-end" :hide-on-click="true">
-                <svg class="iconfont-icon switch-language-icon" aria-hidden="true">
-                    <use xlink:href="#icon-earth"></use>
-                </svg>
+                <Icon name="local-earth" color="var(--color-secondary)" size="30" />
                 <template #dropdown>
                     <el-dropdown-menu class="chang-lang">
                         <el-dropdown-item @click="changLang('zh-cn')">中文简体</el-dropdown-item>
@@ -34,7 +32,7 @@
                                     :placeholder="t('adminLogin.Please enter an account')"
                                 >
                                     <template #prefix>
-                                        <i class="iconfont icon-user"></i>
+                                        <Icon name="local-user" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                     </template>
                                 </el-input>
                             </el-form-item>
@@ -47,7 +45,7 @@
                                     show-password
                                 >
                                     <template #prefix>
-                                        <i class="iconfont icon-unlock"></i>
+                                        <Icon name="local-unlock" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                     </template>
                                 </el-input>
                             </el-form-item>
@@ -63,7 +61,7 @@
                                             autocomplete="off"
                                         >
                                             <template #prefix>
-                                                <i class="iconfont icon-ellipsis"></i>
+                                                <Icon name="local-ellipsis" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                             </template>
                                         </el-input>
                                     </el-col>
@@ -191,13 +189,12 @@ const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
     right: 20px;
     z-index: 1;
 }
-.switch-language-icon {
-    font-size: 30px;
-    color: var(--color-secondary);
-}
 .bubble {
     overflow: hidden;
     background: url(/@/assets/bg.jpg) repeat;
+}
+.form-item-icon {
+    height: auto;
 }
 .login {
     position: absolute;

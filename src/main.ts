@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import { store, key } from './store'
 import { loadLang } from '/@/lang/index'
-import { registerElIcons } from '/@/utils/common'
+import { registerIcons } from '/@/utils/common'
 import ElementPlus from 'element-plus'
 import mitt from 'mitt'
 
@@ -13,8 +13,8 @@ import '/@/styles/base.scss'
 async function start() {
     const app = createApp(App)
 
-    // 全局注册element-icon
-    registerElIcons(app)
+    // 全局注册 icons
+    registerIcons(app)
 
     // 全局语言包加载
     const i18n = await loadLang(app)

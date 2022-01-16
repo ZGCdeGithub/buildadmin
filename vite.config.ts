@@ -2,6 +2,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import type { UserConfig } from 'vite'
 import { isProd, loadEnv } from '/@/utils/vite'
+import { svgBuilder } from '/@/components/icon/svg/index'
 
 const { VITE_PORT, VITE_OPEN, VITE_PUBLIC_PATH } = loadEnv()
 
@@ -17,7 +18,7 @@ const alias: Record<string, string> = {
 
 // https://vitejs.cn/config/
 const viteConfig: UserConfig = {
-    plugins: [vue()],
+    plugins: [vue(), svgBuilder('./src/assets/icons/')],
     root: process.cwd(),
     resolve: { alias },
     base: isProd(process.env.NODE_ENV) ? VITE_PUBLIC_PATH : './',

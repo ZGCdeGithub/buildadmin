@@ -1,6 +1,6 @@
 import { loadCss, loadJs } from './common'
-const cssUrls: Array<string> = ['//at.alicdn.com/t/font_3135462_5axiswmtpj.css']
-const jsUrls: Array<string> = ['//at.alicdn.com/t/font_3135462_5axiswmtpj.js']
+const cssUrls: Array<string> = []
+const jsUrls: Array<string> = []
 
 export default function init() {
     if (cssUrls.length > 0) {

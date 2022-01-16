@@ -1,0 +1,59 @@
+<template>
+    <el-aside class="layout-aside">
+        <Logo />
+        <el-scrollbar>
+            <MenuVertical :menus="menus" />
+        </el-scrollbar>
+    </el-aside>
+</template>
+
+<style lang="scss">
+.layout-aside {
+    background: var(--color-basic-white);
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    width: 260px;
+    height: calc(100vh - 32px);
+    box-shadow: var(--el-box-shadow-light);
+    border-radius: var(--el-border-radius-base);
+    overflow: hidden;
+}
+</style>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import Logo from '/@/layouts/components/logo.vue'
+import MenuVertical from '/@/layouts/components/menuVertical.vue'
+import { store } from '/@/store/index'
+
+const menus = ref([
+    {
+        title: '测试',
+        path: '/404',
+        type: 'tab',
+        icon: 'el-icon-Edit',
+        children: [
+            {
+                title: '测试2',
+                path: 'https://baidu.com',
+                type: 'link',
+                children: [
+                    {
+                        title: '测试2',
+                        path: 'https://baidu.com',
+                        type: 'link',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        title: '测试2',
+        path: 'https://baidu.com',
+        type: 'link',
+    },
+])
+
+const layout = store.getters['config/getStateOrCache']('adminLayout')
+</script>

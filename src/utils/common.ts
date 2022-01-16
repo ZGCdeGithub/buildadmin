@@ -2,12 +2,19 @@ import { nextTick } from 'vue'
 import type { App } from 'vue'
 import * as elIcons from '@element-plus/icons-vue'
 import router from '/@/router/index'
-/*
- * 全局注册element Plus的icon
- * 使用方式: <el-icon><el-icon-UserFilled /></el-icon>
- * 其中`UserFilled`为图标名称，请使用首字母大写驼峰规则
- */
-export function registerElIcons(app: App) {
+import Icon from '/@/components/icon/index.vue'
+
+export function registerIcons(app: App) {
+    /*
+     * 全局注册 Icon
+     * 使用方式: <Icon name="name" size="size" color="color" />
+     * 详见<待完善>
+     */
+    app.component('Icon', Icon)
+
+    /*
+     * 全局注册element Plus的icon
+     */
     const icons = elIcons as any
     for (const i in icons) {
         app.component(`el-icon-${icons[i].name}`, icons[i])
@@ -41,4 +48,12 @@ export function setTitle(t: any = null) {
         }
         document.title = `${webTitle}`
     })
+}
+
+/**
+ * @param {string} path
+ * @return {Boolean}
+ */
+export function isExternal(path: string) {
+    return /^(https?|ftp|mailto|tel):/.test(path)
 }

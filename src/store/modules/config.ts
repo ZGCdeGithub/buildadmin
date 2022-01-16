@@ -11,6 +11,8 @@ interface setObj {
 const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
     namespaced: true,
     state: {
+        // 后台管理布局方法，可选值<Default|Classic|Streamline>
+        adminLayout: 'Default',
         // 默认语言，可选值<zh-cn|en>
         defaultLang: 'zh-cn',
         // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
