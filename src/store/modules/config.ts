@@ -24,10 +24,15 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             // 全局配置
             config: 'baConfig',
         },
+        // 支持的语言列表
         langArray: [
             { name: 'zh-cn', value: '中文简体' },
             { name: 'en', value: 'English' },
         ],
+        // 需要缓存的页面路由 name
+        keepAliveViews: [],
+        // 后台菜单项默认图标
+        defaultMenuIcon: 'el-icon-Minus',
     },
     getters: {
         // 从 state 或者本地缓存获取配置项

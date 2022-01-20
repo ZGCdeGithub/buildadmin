@@ -24,6 +24,24 @@ const staticRoutes: Array<RouteRecordRaw> = [
         meta: {
             title: title('admin'),
         },
+        children: [
+            {
+                path: 'iframe/:url',
+                name: 'layoutIframe',
+                component: () => import('/@/layouts/router-view/iframe.vue'),
+                meta: {
+                    title: title('layoutIframe'),
+                },
+            },
+            {
+                path: 'dashboard',
+                name: 'dashboard',
+                component: () => import('/@/views/backend/dashboard.vue'),
+                meta: {
+                    title: title('dashboard'),
+                },
+            },
+        ],
     },
     {
         path: '/admin/login',

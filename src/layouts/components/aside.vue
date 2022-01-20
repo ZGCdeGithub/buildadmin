@@ -29,29 +29,20 @@ import { store } from '/@/store/index'
 
 const menus = ref([
     {
-        title: '测试',
-        path: '/404',
+        title: '控制台',
+        path: '/admin/dashboard',
         type: 'tab',
-        icon: 'el-icon-Edit',
-        children: [
-            {
-                title: '测试2',
-                path: 'https://baidu.com',
-                type: 'link',
-                children: [
-                    {
-                        title: '测试2',
-                        path: 'https://baidu.com',
-                        type: 'link',
-                    },
-                ],
-            },
-        ],
+        icon: 'el-icon-Odometer',
     },
     {
-        title: '测试2',
+        title: '百度',
         path: 'https://baidu.com',
         type: 'link',
+    },
+    {
+        title: '百度iframe',
+        path: 'https://baidu.com',
+        type: 'iframe',
     },
 ])
 

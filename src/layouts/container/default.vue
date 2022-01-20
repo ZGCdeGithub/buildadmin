@@ -3,6 +3,7 @@
         <Aside />
         <el-container class="content-wrapper">
             <Header />
+            <Main />
         </el-container>
     </el-container>
 </template>
@@ -10,6 +11,7 @@
 <script setup lang="ts">
 import Aside from '/@/layouts/components/aside.vue'
 import Header from '/@/layouts/components/header.vue'
+import Main from '/@/layouts/router-view/main.vue'
 </script>
 
 <style scoped>

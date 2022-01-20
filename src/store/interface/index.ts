@@ -13,6 +13,8 @@ export interface ConfigStateTypes {
         name: string
         value: string
     }[]
+    keepAliveViews: []
+    defaultMenuIcon: string
 }
 
 // 管理员信息

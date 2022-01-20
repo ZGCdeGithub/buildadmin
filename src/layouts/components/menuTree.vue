@@ -14,11 +14,11 @@
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ $t(menu.title) }}</span>
             </el-menu-item>
-            <el-menu-item v-if="menu.type == 'link'" index="/link">
+            <el-menu-item v-if="menu.type == 'link'" index="" @click="onLink(menu.path)">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ $t(menu.title) }}</span>
             </el-menu-item>
-            <el-menu-item v-if="menu.type == 'iframe'" index="/iframe">
+            <el-menu-item v-if="menu.type == 'iframe'" :index="'/admin/iframe/' + encodeURIComponent(menu.path)">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ $t(menu.title) }}</span>
             </el-menu-item>
@@ -26,6 +26,7 @@
     </template>
 </template>
 <script setup lang="ts">
+import { store } from '/@/store/index'
 interface menu {
     title: string
     path: string
@@ -39,5 +40,19 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     menus: () => [],
 })
-const defaultIcon = 'el-icon-Minus'
+
+const defaultIcon = store.state.config.defaultMenuIcon
+
+const onLink = (url: string) => {
+    window.open(url, '_blank')
+}
 </script>
+
+<style scoped lang="scss">
+.el-menu-item .icon {
+    vertical-align: middle;
+    margin-right: 5px;
+    width: 24px;
+    text-align: center;
+}
+</style>
