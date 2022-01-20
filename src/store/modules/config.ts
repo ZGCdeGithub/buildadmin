@@ -23,6 +23,8 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             adminInfo: 'adminInfo',
             // 全局配置
             config: 'baConfig',
+            // 最后选项卡(刷新页面时取回)
+            lastTabView: 'lastTabView',
         },
         // 支持的语言列表
         langArray: [

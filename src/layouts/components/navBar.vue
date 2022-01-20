@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue'
+import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
 import navMenus from '/@/layouts/components/navMenus.vue'
 const nav = ref(0)
 
@@ -36,6 +37,10 @@ onMounted(() => {
     const nav = document.getElementsByClassName('bd-nav-tab')[0] as HTMLElement
     activeBoxStyle.width = nav.clientWidth + 'px'
     activeBoxStyle.transform = `translateX(${nav.offsetLeft}px)`
+})
+
+onBeforeRouteUpdate(async (to, from) => {
+    console.log(to, from)
 })
 </script>
 

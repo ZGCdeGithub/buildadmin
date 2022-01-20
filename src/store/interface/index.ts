@@ -8,6 +8,7 @@ export interface ConfigStateTypes {
     localKey: {
         adminInfo: string
         config: string
+        lastTabView: string
     }
     langArray: {
         name: string
@@ -22,8 +23,22 @@ export interface AdminInfoStateTypes {
     adminInfo: object
 }
 
+export interface viewMenu {
+    title: string
+    path: string
+    type?: string
+    icon?: string
+    children?: viewMenu[]
+}
+
+export interface NavTabs {
+    tabsView: Array<viewMenu>
+    tabCurrenFull: Boolean
+}
+
 // 顶级类型声明
 export interface RootStateTypes {
     config: ConfigStateTypes
     adminInfo: AdminInfoStateTypes
+    navTabs: NavTabs
 }

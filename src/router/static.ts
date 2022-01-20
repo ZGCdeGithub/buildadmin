@@ -30,7 +30,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
                 name: 'layoutIframe',
                 component: () => import('/@/layouts/router-view/iframe.vue'),
                 meta: {
-                    title: title('layoutIframe'),
+                    title: '内嵌iframe',
                 },
             },
             {
@@ -38,7 +38,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
                 name: 'dashboard',
                 component: () => import('/@/views/backend/dashboard.vue'),
                 meta: {
-                    title: title('dashboard'),
+                    title: '控制台',
                 },
             },
         ],

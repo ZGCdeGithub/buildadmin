@@ -4,4 +4,5 @@ export default {
     adminLogin: 'Login',
     notFound: 'Page not found',
     noPower: 'No access',
+    noTitle: 'no title',
 }
