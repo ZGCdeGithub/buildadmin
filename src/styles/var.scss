@@ -37,6 +37,7 @@ $--color-primary-sub-9: mix($--color-white, $--color-primary, 90%) !default;
     --color-placeholder: #c0c4cc; // 占位文本
 
     /* 主色辅助色 */
+    --color-primary-sub-0: #3f6ad8;
     --color-primary-sub-1: #{$--color-primary-sub-1};
     --color-primary-sub-2: #{$--color-primary-sub-2};
     --color-primary-sub-3: #{$--color-primary-sub-3};
@@ -68,4 +69,7 @@ $--color-primary-sub-9: mix($--color-white, $--color-primary, 90%) !default;
     --color-sub-4: #f2f6fc; // 辅助颜色4
     --color-bg-1: #f5f5f5;
     --color-bg-2: #fcfcfc;
+
+    // 默认布局侧栏宽度
+    --default-aside-width: 260px;
 }

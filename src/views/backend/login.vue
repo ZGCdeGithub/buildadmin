@@ -5,8 +5,9 @@
                 <Icon name="local-earth" color="var(--color-secondary)" size="30" />
                 <template #dropdown>
                     <el-dropdown-menu class="chang-lang">
-                        <el-dropdown-item @click="changLang('zh-cn')">中文简体</el-dropdown-item>
-                        <el-dropdown-item @click="changLang('en')">English</el-dropdown-item>
+                        <el-dropdown-item v-for="item in langArray" :key="item.name" @click="editDefaultLang(item.name)">
+                            {{ item.value }}
+                        </el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -87,11 +88,12 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, onMounted, onBeforeUnmount, reactive, ref } from 'vue'
+import { getCurrentInstance, onMounted, onBeforeUnmount, reactive, ref, computed } from 'vue'
 import * as pageBubble from '/@/utils/pageBubble'
 import type { ElForm } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { editDefaultLang } from '/@/lang/index'
+import { store } from '/@/store/index'
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 const form = reactive({
@@ -164,9 +166,9 @@ onBeforeUnmount(() => {
     pageBubble.removeListeners()
 })
 
-const changLang = (lang: string) => {
-    editDefaultLang(lang)
-}
+const langArray = computed(() => {
+    return store.state.config.langArray
+})
 
 const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
     if (!formEl) return

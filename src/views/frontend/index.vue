@@ -5,8 +5,7 @@
         <div>{{ $t(`layout.seting`) }}</div>
         <el-date-picker type="date"></el-date-picker>
         <br />
-        <Icon size="60" color="red" name="local-dq" />
-        <Icon size="50" color="blue" name="local-gf" />
+        <Icon size="60" color="red" name="local-lang" />
         <Icon size="50" color="blue" name="el-icon-Edit" />
         <Icon size="80" color="red" name="iconfont icon-ellipsis" />
     </div>

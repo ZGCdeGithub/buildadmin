@@ -24,6 +24,10 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             // 全局配置
             config: 'baConfig',
         },
+        langArray: [
+            { name: 'zh-cn', value: '中文简体' },
+            { name: 'en', value: 'English' },
+        ],
     },
     getters: {
         // 从 state 或者本地缓存获取配置项

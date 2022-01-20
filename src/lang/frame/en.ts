@@ -7,4 +7,5 @@ export default {
     layout: {
         seting: 'seting',
     },
+    'Full screen is not supported': 'Your browser does not support full screen. Please change your browser and try again~',
 }

@@ -13,7 +13,7 @@
     position: fixed;
     top: 16px;
     left: 16px;
-    width: 260px;
+    width: var(--default-aside-width);
     height: calc(100vh - 32px);
     box-shadow: var(--el-box-shadow-light);
     border-radius: var(--el-border-radius-base);

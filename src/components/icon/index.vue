@@ -29,11 +29,11 @@ export default defineComponent({
         })
 
         if (props.name.indexOf('el-icon-') === 0) {
-            return () => h('el-icon', { class: 'el-icon', style: iconStyle.value }, [h(resolveComponent(props.name))])
+            return () => h('el-icon', { class: 'icon el-icon', style: iconStyle.value }, [h(resolveComponent(props.name))])
         } else if (props.name.indexOf('local-') === 0 || isExternal(props.name)) {
             return () => h(svg, { name: props.name, size: props.size, color: props.color })
         } else {
-            return () => h('i', { class: props.name, style: iconStyle.value })
+            return () => h('i', { class: [props.name, 'icon'], style: iconStyle.value })
         }
     },
 })

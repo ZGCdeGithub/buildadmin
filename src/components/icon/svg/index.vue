@@ -1,6 +1,6 @@
 <template>
-    <div v-if="isUrl" :style="urlIconStyle" class="url-svg svg-icon" />
-    <svg v-else class="svg-icon" :style="iconStyle" aria-hidden="true">
+    <div v-if="isUrl" :style="urlIconStyle" class="url-svg svg-icon icon" />
+    <svg v-else class="svg-icon icon" :style="iconStyle" aria-hidden="true">
         <use :xlink:href="iconName" />
     </svg>
 </template>
@@ -24,6 +24,7 @@ const s = `${props.size.replace('px', '')}px`
 const iconName = computed(() => `#${props.name}`)
 const iconStyle = computed((): CSSProperties => {
     return {
+        color: props.color,
         fontSize: s,
     }
 })
@@ -42,7 +43,7 @@ const urlIconStyle = computed(() => {
 .svg-icon {
     width: 1em;
     height: 1em;
-    fill: v-bind(color);
+    fill: currentColor;
     overflow: hidden;
 }
 </style>

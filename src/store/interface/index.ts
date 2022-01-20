@@ -9,6 +9,10 @@ export interface ConfigStateTypes {
         adminInfo: string
         config: string
     }
+    langArray: {
+        name: string
+        value: string
+    }[]
 }
 
 // 管理员信息

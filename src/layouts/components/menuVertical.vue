@@ -1,5 +1,5 @@
 <template>
-    <el-menu router :collapse-transition="false" :unique-opened="uniqueOpened" default-active="1" :collapse="collapse" background-color="transparent">
+    <el-menu class="layouts-menu-vertical" router :collapse-transition="false" :unique-opened="uniqueOpened" default-active="1" :collapse="collapse" background-color="transparent">
         <MenuTree :menus="menus" />
     </el-menu>
 </template>
@@ -25,3 +25,8 @@ const props = withDefaults(defineProps<Props>(), {
 const collapse = ref(false)
 const uniqueOpened = ref(false)
 </script>
+<style>
+.layouts-menu-vertical {
+    border: 0;
+}
+</style>

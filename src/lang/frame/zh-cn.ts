@@ -7,4 +7,5 @@ export default {
     layout: {
         seting: '设置',
     },
+    'Full screen is not supported': '您的浏览器不支持全屏，请更换浏览器再试~',
 }
