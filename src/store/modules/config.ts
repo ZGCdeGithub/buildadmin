@@ -33,6 +33,8 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
         ],
         // 后台菜单项默认图标
         defaultMenuIcon: 'el-icon-Minus',
+        // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
+        layoutMainAnimation: 'slide-right',
     },
     getters: {
         // 从 state 或者本地缓存获取配置项

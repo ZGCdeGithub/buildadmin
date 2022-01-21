@@ -2,14 +2,16 @@
     <el-main class="layout-main">
         <el-scrollbar class="layout-main-scrollbar" :style="layoutMainScrollbarStyle()" ref="mainScrollbarRef">
             <router-view v-slot="{ Component }">
-                <transition name="el-fade-in-linear" mode="out-in">
-                    <div>
-                        <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
-                        <keep-alive>
-                            <component v-if="state.keepAlive" :is="Component" :key="state.componentKey" />
-                        </keep-alive>
-                        <component v-if="!state.keepAlive" :is="Component" :key="state.componentKey" />
-                    </div>
+                <!-- 避免动画失效 -->
+                <transition :name="layoutMainAnimation" mode="out-in">
+                    <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
+                    <!-- v-if需要写到 keep-alive 里边，否则第二个路由 keepAlive 失效 -->
+                    <keep-alive>
+                        <component v-if="state.keepAlive" :is="Component" :key="state.componentKey" />
+                    </keep-alive>
+                </transition>
+                <transition :name="layoutMainAnimation" mode="out-in">
+                    <component v-if="!state.keepAlive" :is="Component" :key="state.componentKey" />
                 </transition>
             </router-view>
         </el-scrollbar>
@@ -29,6 +31,8 @@ const state = reactive({
     componentKey: route.fullPath,
     keepAlive: false,
 })
+
+const layoutMainAnimation = computed(() => store.state.config.layoutMainAnimation)
 
 onMounted(() => {
     // 确保刷新页面时也能正确取得当前路由 keepAlive 参数

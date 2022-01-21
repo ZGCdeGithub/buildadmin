@@ -15,6 +15,7 @@ export interface ConfigStateTypes {
         value: string
     }[]
     defaultMenuIcon: string
+    layoutMainAnimation: string
 }
 
 // 管理员信息
