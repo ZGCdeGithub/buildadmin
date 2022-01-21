@@ -32,8 +32,11 @@ export interface viewMenu {
 }
 
 export interface NavTabs {
+    activeIndex: number
+    activeRoute: viewMenu | null
     tabsView: Array<viewMenu>
     tabCurrenFull: Boolean
+    tabsViewRoutes: Array<viewMenu>
 }
 
 // 顶级类型声明

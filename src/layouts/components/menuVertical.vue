@@ -15,18 +15,14 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 import MenuTree from '/@/layouts/components/menuTree.vue'
 import { useRoute, onBeforeRouteUpdate, RouteLocationNormalizedLoaded } from 'vue-router'
 import type { ElScrollbar } from 'element-plus'
-import type { viewMenu } from '/@/store/interface'
+import { useStore } from '/@/store'
 
-interface Props {
-    menus: viewMenu[]
-}
-const props = withDefaults(defineProps<Props>(), {
-    menus: () => [],
-})
+const store = useStore()
+const route = useRoute()
 
 const verticalMenusRef = ref<InstanceType<typeof ElScrollbar>>()
 
@@ -34,7 +30,7 @@ const state = reactive({
     defaultActive: '',
 })
 
-const route = useRoute()
+const menus = store.state.navTabs.tabsViewRoutes
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {
@@ -53,6 +49,10 @@ const verticalMenusScroll = () => {
 onMounted(() => {
     currentRouteActive(route)
     verticalMenusScroll()
+})
+
+onBeforeRouteUpdate((to) => {
+    currentRouteActive(to)
 })
 
 const collapse = ref(false)

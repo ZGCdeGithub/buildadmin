@@ -6,6 +6,12 @@
         "icon": "el-icon-Odometer"
     },
     {
+        "title": "系统设置",
+        "path": "/admin/routine/config",
+        "type": "tab",
+        "icon": "el-icon-Setting"
+    },
+    {
         "title": "百度",
         "path": "https://baidu.com",
         "type": "link"

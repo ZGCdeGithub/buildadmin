@@ -1,13 +1,11 @@
 <template>
     <div class="nav-bar">
         <div class="nav-tabs">
-            <div @click="changeNavTab(0, $event)" :class="nav == 0 ? 'active' : ''" class="bd-nav-tab">
-                控制台<Icon class="close-icon" @click.stop="closeTab(0)" size="15" name="el-icon-Close" />
-            </div>
-            <div @click="changeNavTab(1, $event)" :class="nav == 1 ? 'active' : ''" class="bd-nav-tab">自定义</div>
-            <div @click="changeNavTab(2, $event)" :class="nav == 2 ? 'active' : ''" class="bd-nav-tab">系统配置</div>
-            <div @click="changeNavTab(3, $event)" :class="nav == 3 ? 'active' : ''" class="bd-nav-tab">个人资料特别唱歌吧附件管理</div>
-            <div @click="changeNavTab(4, $event)" :class="nav == 4 ? 'active' : ''" class="bd-nav-tab">个人资料特别唱歌吧</div>
+            <template v-for="(item, idx) in tabsView">
+                <div @click="onChangeNavTab(item)" :data-path="item.path" class="bd-nav-tab" :ref="tabsRefs.set">
+                    {{ item.title }}<Icon class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
+                </div>
+            </template>
             <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
         </div>
         <navMenus />
@@ -15,32 +13,56 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive } from 'vue'
-import { useRoute, useRouter, onBeforeRouteUpdate } from 'vue-router'
+import { reactive, nextTick, onMounted, ref } from 'vue'
+import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
 import navMenus from '/@/layouts/components/navMenus.vue'
-const nav = ref(0)
+import { useStore } from '/@/store'
+import { viewMenu } from '/@/store/interface'
+import { useTemplateRefsList } from '@vueuse/core'
+import { useState } from '/@/store/useMapper'
+
+const tabsRefs = useTemplateRefsList<HTMLDivElement>()
+
+const route = useRoute()
+const router = useRouter()
+const store = useStore()
+
+const { activeIndex, activeRoute, tabsView } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView'])
 
 const activeBoxStyle = reactive({
     width: '0',
     transform: 'translateX(0px)',
 })
 
-const changeNavTab = (index: number, el: any) => {
-    nav.value = index
-    activeBoxStyle.width = el.target.clientWidth + 'px'
-    activeBoxStyle.transform = `translateX(${el.target.offsetLeft}px)`
+const onChangeNavTab = (route: viewMenu) => {
+    router.push(route.path)
 }
 
-const closeTab = (index: number) => {}
+// tab 激活状态切换
+const selectNavTab = function (dom: HTMLDivElement) {
+    activeBoxStyle.width = dom.clientWidth + 'px'
+    activeBoxStyle.transform = `translateX(${dom.offsetLeft}px)`
+}
 
-onMounted(() => {
-    const nav = document.getElementsByClassName('bd-nav-tab')[0] as HTMLElement
-    activeBoxStyle.width = nav.clientWidth + 'px'
-    activeBoxStyle.transform = `translateX(${nav.offsetLeft}px)`
-})
+const updateTab = function (newRoute: RouteLocationNormalized | viewMenu) {
+    // 添加tab
+    store.commit('navTabs/addTab', newRoute.path)
+    // 激活当前tab
+    store.commit('navTabs/setActiveRoute', newRoute.path)
+
+    nextTick(() => {
+        selectNavTab(tabsRefs.value[activeIndex.value])
+    })
+}
+
+const closeTab = (route: viewMenu) => {}
 
 onBeforeRouteUpdate(async (to, from) => {
-    console.log(to, from)
+    updateTab(to)
+})
+
+onMounted(() => {
+    updateTab(route)
 })
 </script>
 

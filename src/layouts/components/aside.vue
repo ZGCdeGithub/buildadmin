@@ -1,7 +1,7 @@
 <template>
     <el-aside class="layout-aside">
         <Logo />
-        <MenuVertical :menus="menus" />
+        <MenuVertical />
     </el-aside>
 </template>
 
@@ -24,8 +24,6 @@ import { ref } from 'vue'
 import Logo from '/@/layouts/components/logo.vue'
 import MenuVertical from '/@/layouts/components/menuVertical.vue'
 import { store } from '/@/store/index'
-
-import menus from '/@/mock/router.json'
 
 const layout = store.getters['config/getStateOrCache']('adminLayout')
 </script>

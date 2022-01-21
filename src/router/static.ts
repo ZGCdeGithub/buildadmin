@@ -21,6 +21,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
         path: '/admin',
         name: 'admin',
         component: () => import('/@/layouts/backend/index.vue'),
+        redirect: '/admin/dashboard',
         meta: {
             title: title('admin'),
         },
@@ -39,6 +40,14 @@ const staticRoutes: Array<RouteRecordRaw> = [
                 component: () => import('/@/views/backend/dashboard.vue'),
                 meta: {
                     title: '控制台',
+                },
+            },
+            {
+                path: 'routine/config',
+                name: 'routine/config',
+                component: () => import('/@/views/backend/routine/config.vue'),
+                meta: {
+                    title: '系统设置',
                 },
             },
         ],

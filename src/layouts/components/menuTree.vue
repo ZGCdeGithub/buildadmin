@@ -18,7 +18,7 @@
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
             </el-menu-item>
-            <el-menu-item v-if="menu.type == 'iframe'" :index="'/admin/iframe/' + encodeURIComponent(menu.path)">
+            <el-menu-item v-if="menu.type == 'iframe'" :index="menu.path">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
             </el-menu-item>
