@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="dashboard">dashboard</div>
-        <div class="dashboard" :style="{background: '#fff'}">dashboard</div>
+        <div class="dashboard" :style="{ background: '#fff' }">dashboard</div>
         1
     </div>
 </template>

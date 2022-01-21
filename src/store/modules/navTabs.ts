@@ -1,7 +1,6 @@
 import { Module } from 'vuex'
 import { viewMenu, NavTabs, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
-import { store } from '/@/store/index'
 
 const NavTabsModule: Module<NavTabs, RootStateTypes> = {
     namespaced: true,

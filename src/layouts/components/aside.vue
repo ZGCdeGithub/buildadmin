@@ -20,10 +20,11 @@
 </style>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import Logo from '/@/layouts/components/logo.vue'
 import MenuVertical from '/@/layouts/components/menuVertical.vue'
-import { store } from '/@/store/index'
+import { useStore } from '/@/store/index'
+
+const store = useStore()
 
 const layout = store.getters['config/getStateOrCache']('adminLayout')
 </script>

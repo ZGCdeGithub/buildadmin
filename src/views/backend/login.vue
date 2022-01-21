@@ -93,7 +93,9 @@ import * as pageBubble from '/@/utils/pageBubble'
 import type { ElForm } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 import { editDefaultLang } from '/@/lang/index'
-import { store } from '/@/store/index'
+import { useStore } from '/@/store/index'
+
+const store = useStore()
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 const form = reactive({

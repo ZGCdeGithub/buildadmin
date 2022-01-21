@@ -1,5 +1,4 @@
 import { CSSProperties } from 'vue'
-import { store } from '/@/store/index'
 
 /**
  * main高度

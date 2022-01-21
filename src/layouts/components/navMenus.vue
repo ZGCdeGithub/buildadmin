@@ -89,9 +89,7 @@ const state = reactive({
     showLayoutDrawer: false,
 })
 
-const langArray = computed(() => {
-    return store.state.config.langArray
-})
+const langArray = computed(() => store.state.config.langArray)
 
 const onCurrentNavMenu = (status: boolean, name: string) => {
     state.currentNavMenu = status ? name : ''

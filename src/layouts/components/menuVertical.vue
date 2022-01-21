@@ -30,7 +30,7 @@ const state = reactive({
     defaultActive: '',
 })
 
-const menus = store.state.navTabs.tabsViewRoutes
+const menus = computed(() => store.state.navTabs.tabsViewRoutes)
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {

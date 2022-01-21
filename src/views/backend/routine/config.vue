@@ -1,5 +1,3 @@
 <template>
-<div>
-    routine/config
-</div>
+    <div>routine/config</div>
 </template>
