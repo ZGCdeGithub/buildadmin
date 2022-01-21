@@ -3,6 +3,8 @@ import type { App } from 'vue'
 import * as elIcons from '@element-plus/icons-vue'
 import router from '/@/router/index'
 import Icon from '/@/components/icon/index.vue'
+import { store } from '/@/store'
+import { viewMenu } from '../store/interface'
 
 export function registerIcons(app: App) {
     /*
@@ -42,9 +44,15 @@ export function loadJs(url: string): void {
  */
 export function setTitle(t: any = null) {
     nextTick(() => {
-        let webTitle = router.currentRoute.value.meta.title as any
-        if (t) {
-            webTitle = t(webTitle)
+        const tabsViewRoutes = store.state.navTabs.tabsViewRoutes
+        const currentRoute: viewMenu | undefined = tabsViewRoutes.find((route: viewMenu) => {
+            return route.path == router.currentRoute.value.path
+        })
+        var webTitle: string = ''
+        if (currentRoute) {
+            webTitle = currentRoute.title
+        } else {
+            webTitle = t ? t(router.currentRoute.value.meta.title) : (router.currentRoute.value.meta.title as string)
         }
         document.title = `${webTitle}`
     })
