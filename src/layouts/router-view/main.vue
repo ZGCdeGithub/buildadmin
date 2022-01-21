@@ -2,7 +2,7 @@
     <el-main class="layout-main">
         <el-scrollbar class="layout-main-scrollbar" :style="layoutMainScrollbarStyle()" ref="mainScrollbarRef">
             <router-view v-slot="{ Component }">
-                <transition name="fade-transform" mode="out-in">
+                <transition name="el-fade-in-linear" mode="out-in">
                     <div>
                         <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
                         <keep-alive>

@@ -31,6 +31,13 @@ const NavTabsModule: Module<NavTabs, RootStateTypes> = {
                 })
             )
         },
+        closeTab(state, route: viewMenu): void {
+            state.tabsView.map((v, k) => {
+                if (v.path == route.path) {
+                    state.tabsView.splice(k, 1)
+                }
+            })
+        },
         setActiveRoute(state, path: string): void {
             const currentRoute: viewMenu | undefined = state.tabsViewRoutes.find((route: viewMenu) => {
                 return route.path === path

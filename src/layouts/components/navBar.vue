@@ -2,8 +2,11 @@
     <div class="nav-bar">
         <div class="nav-tabs">
             <template v-for="(item, idx) in tabsView">
-                <div @click="onChangeNavTab(item)" :data-path="item.path" class="bd-nav-tab" :ref="tabsRefs.set">
-                    {{ item.title }}<Icon class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
+                <div @click="onChangeNavTab(item)" class="bd-nav-tab" :ref="tabsRefs.set">
+                    {{ item.title }}
+                    <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
+                        <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
+                    </transition>
                 </div>
             </template>
             <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
@@ -27,7 +30,7 @@ const route = useRoute()
 const router = useRouter()
 const store = useStore()
 
-const { activeIndex, activeRoute, tabsView } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView'])
+const { activeIndex, activeRoute, tabsView, tabsViewRoutes } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView', 'tabsViewRoutes'])
 
 const activeBoxStyle = reactive({
     width: '0',
@@ -55,7 +58,26 @@ const updateTab = function (newRoute: RouteLocationNormalized | viewMenu) {
     })
 }
 
-const closeTab = (route: viewMenu) => {}
+const toLastTab = () => {
+    const lastTab = tabsView.value.slice(-1)[0]
+    if (lastTab) {
+        router.push(lastTab.path)
+    } else {
+        router.push('/admin')
+    }
+}
+
+const closeTab = (route: viewMenu) => {
+    store.commit('navTabs/closeTab', route)
+    if (activeRoute.value.path === route.path) {
+        toLastTab()
+    } else {
+        store.commit('navTabs/setActiveRoute', activeRoute.value.path)
+        nextTick(() => {
+            selectNavTab(tabsRefs.value[activeIndex.value])
+        })
+    }
+}
 
 onBeforeRouteUpdate(async (to, from) => {
     updateTab(to)
