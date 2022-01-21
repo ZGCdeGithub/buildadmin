@@ -3,13 +3,15 @@
         "title": "控制台",
         "path": "/admin/dashboard",
         "type": "tab",
-        "icon": "el-icon-Odometer"
+        "icon": "el-icon-Odometer",
+        "keepAlive": true
     },
     {
         "title": "系统设置",
         "path": "/admin/routine/config",
         "type": "tab",
-        "icon": "el-icon-Setting"
+        "icon": "el-icon-Setting",
+        "keepAlive": true
     },
     {
         "title": "百度",

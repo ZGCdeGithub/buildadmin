@@ -14,7 +14,6 @@ export interface ConfigStateTypes {
         name: string
         value: string
     }[]
-    keepAliveViews: []
     defaultMenuIcon: string
 }
 
@@ -28,6 +27,7 @@ export interface viewMenu {
     path: string
     type?: string
     icon?: string
+    keepAlive?: boolean
     children?: viewMenu[]
 }
 

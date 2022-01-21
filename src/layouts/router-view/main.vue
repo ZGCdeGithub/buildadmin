@@ -3,9 +3,13 @@
         <el-scrollbar class="layout-main-scrollbar" :style="layoutMainScrollbarStyle()" ref="mainScrollbarRef">
             <router-view v-slot="{ Component }">
                 <transition name="fade-transform" mode="out-in">
-                    <keep-alive :include="keepAliveViews">
-                        <component :is="Component" :key="path" />
-                    </keep-alive>
+                    <div>
+                        <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
+                        <keep-alive>
+                            <component v-if="state.keepAlive" :is="Component" :key="state.componentKey" />
+                        </keep-alive>
+                        <component v-if="!state.keepAlive" :is="Component" :key="state.componentKey" />
+                    </div>
                 </transition>
             </router-view>
         </el-scrollbar>
@@ -13,16 +17,31 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, onMounted, CSSProperties } from 'vue'
-import { store } from '/@/store/index'
+import { reactive, onMounted, CSSProperties, watch, computed } from 'vue'
+import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
 import { mainHeight as layoutMainScrollbarStyle } from '/@/utils/layout'
 
-const { path } = useRoute()
+const route = useRoute()
+const store = useStore()
 
-const keepAliveViews = computed(() => {
-    return store.state.config.keepAliveViews
+const state = reactive({
+    componentKey: route.fullPath,
+    keepAlive: false,
 })
+
+onMounted(() => {
+    // 确保刷新页面时也能正确取得当前路由 keepAlive 参数
+    state.keepAlive = store.state.navTabs.activeRoute?.keepAlive ? store.state.navTabs.activeRoute.keepAlive : false
+})
+
+watch(
+    () => route.path,
+    () => {
+        state.componentKey = route.fullPath
+        state.keepAlive = store.state.navTabs.activeRoute?.keepAlive ? store.state.navTabs.activeRoute.keepAlive : false
+    }
+)
 </script>
 
 <style scoped lang="scss">
