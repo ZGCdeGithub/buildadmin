@@ -54,5 +54,96 @@
         "path": "https://www.jianshu.com/p/120eaf50331c",
         "type": "iframe",
         "icon": "el-icon-Edit"
+    },
+    {
+        "title": "系统设置3",
+        "path": "/admin/routine/config/3",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置4",
+        "path": "/admin/routine/config/4",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置5",
+        "path": "/admin/routine/config/5",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置6",
+        "path": "/admin/routine/config/6",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置7",
+        "path": "/admin/routine/config/7",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置8",
+        "path": "/admin/routine/config/8",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置9",
+        "path": "/admin/routine/config/9",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置10",
+        "path": "/admin/routine/config/10",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置11",
+        "path": "/admin/routine/config/11",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置12",
+        "path": "/admin/routine/config/12",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置13",
+        "path": "/admin/routine/config/13",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置14",
+        "path": "/admin/routine/config/14",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
+    },
+    {
+        "title": "系统设置15",
+        "path": "/admin/routine/config/15",
+        "type": "tab",
+        "icon": "el-icon-Setting",
+        "keepAlive": true
     }
 ]

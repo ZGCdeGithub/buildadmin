@@ -58,7 +58,7 @@ onBeforeRouteUpdate((to) => {
 </script>
 <style>
 .vertical-menus-scrollbar {
-    height: calc(100vh - 80px);
+    height: calc(100vh - 92px);
 }
 .layouts-menu-vertical {
     border: 0;
