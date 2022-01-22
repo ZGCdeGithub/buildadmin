@@ -47,7 +47,7 @@ const onLink = (url: string) => {
 </script>
 
 <style scoped lang="scss">
-.el-menu-item .icon {
+.el-sub-menu .icon,.el-menu-item .icon {
     vertical-align: middle;
     margin-right: 5px;
     width: 24px;

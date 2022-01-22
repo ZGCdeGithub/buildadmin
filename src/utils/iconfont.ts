@@ -1,5 +1,8 @@
 import { loadCss, loadJs } from './common'
-const cssUrls: Array<string> = ['//at.alicdn.com/t/font_3135462_5axiswmtpj.css']
+const cssUrls: Array<string> = [
+    '//at.alicdn.com/t/font_3135462_5axiswmtpj.css',
+    '//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+]
 const jsUrls: Array<string> = []
 
 export default function init() {

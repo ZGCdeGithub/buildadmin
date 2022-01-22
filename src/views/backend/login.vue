@@ -2,7 +2,7 @@
     <div>
         <div class="switch-language">
             <el-dropdown size="large" :hide-timeout="50" placement="bottom-end" :hide-on-click="true">
-                <Icon name="local-earth" color="var(--color-secondary)" size="30" />
+                <Icon name="fa fa-globe" color="var(--color-secondary)" size="28" />
                 <template #dropdown>
                     <el-dropdown-menu class="chang-lang">
                         <el-dropdown-item v-for="item in langArray" :key="item.name" @click="editDefaultLang(item.name)">
@@ -33,7 +33,7 @@
                                     :placeholder="t('adminLogin.Please enter an account')"
                                 >
                                     <template #prefix>
-                                        <Icon name="local-user" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
+                                        <Icon name="fa fa-user" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                     </template>
                                 </el-input>
                             </el-form-item>
@@ -46,7 +46,7 @@
                                     show-password
                                 >
                                     <template #prefix>
-                                        <Icon name="local-unlock" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
+                                        <Icon name="fa fa-unlock-alt" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                     </template>
                                 </el-input>
                             </el-form-item>
@@ -62,7 +62,7 @@
                                             autocomplete="off"
                                         >
                                             <template #prefix>
-                                                <Icon name="local-ellipsis" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
+                                                <Icon name="fa fa-ellipsis-h" class="form-item-icon" size="16" color="var(--el-input-icon-color)" />
                                             </template>
                                         </el-input>
                                     </el-col>
@@ -263,5 +263,9 @@ const onSubmit = (formEl: InstanceType<typeof ElForm> | undefined) => {
 }
 .chang-lang :deep(.el-dropdown-menu__item) {
     justify-content: center;
+}
+.content :deep(.el-input__prefix) {
+    display: flex;
+    align-items: center;
 }
 </style>

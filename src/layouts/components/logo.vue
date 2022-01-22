@@ -4,9 +4,9 @@
         <div v-if="!menuCollapse" class="website-name">BuildAdmin</div>
         <Icon
             @click="onMenuCollapse"
-            :name="menuCollapse ? 'local-unfold' : 'local-fold'"
+            :name="menuCollapse ? 'fa fa-indent' : 'fa fa-dedent'"
             :class="menuCollapse ? 'unfold' : ''"
-            size="20"
+            size="18"
             class="fold"
         />
     </div>

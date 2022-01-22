@@ -3,21 +3,21 @@
         "title": "控制台",
         "path": "/admin/dashboard",
         "type": "tab",
-        "icon": "el-icon-Odometer",
+        "icon": "fa fa-tachometer",
         "keepAlive": true,
         "children": [
             {
                 "title": "系统设置1",
                 "path": "/admin/routine/config/111",
                 "type": "tab",
-                "icon": "el-icon-Setting",
+                "icon": "fa fa-cogs",
                 "keepAlive": true
             },
             {
                 "title": "系统设置2",
                 "path": "/admin/routine/config/222",
                 "type": "tab",
-                "icon": "el-icon-Setting",
+                "icon": "fa fa-cogs",
                 "keepAlive": true
             }
         ]
@@ -26,21 +26,21 @@
         "title": "系统设置",
         "path": "/admin/routine/config",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-cogs",
         "keepAlive": true,
         "children": [
             {
                 "title": "系统设置1",
                 "path": "/admin/routine/config/111",
                 "type": "tab",
-                "icon": "el-icon-Setting",
+                "icon": "fa fa-cogs",
                 "keepAlive": true
             },
             {
                 "title": "简书",
                 "path": "https://www.jianshu.com/p/120eaf50331c",
                 "type": "iframe",
-                "icon": "el-icon-Edit"
+                "icon": "fa fa-cogs"
             }
         ]
     },
@@ -53,97 +53,97 @@
         "title": "简书",
         "path": "https://www.jianshu.com/p/120eaf50331c",
         "type": "iframe",
-        "icon": "el-icon-Edit"
+        "icon": "fa fa-address-book"
     },
     {
         "title": "系统设置3",
         "path": "/admin/routine/config/3",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置4",
         "path": "/admin/routine/config/4",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置5",
         "path": "/admin/routine/config/5",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置6",
         "path": "/admin/routine/config/6",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置7",
         "path": "/admin/routine/config/7",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置8",
         "path": "/admin/routine/config/8",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置9",
         "path": "/admin/routine/config/9",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置10",
         "path": "/admin/routine/config/10",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置11",
         "path": "/admin/routine/config/11",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置12",
         "path": "/admin/routine/config/12",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置13",
         "path": "/admin/routine/config/13",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置14",
         "path": "/admin/routine/config/14",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     },
     {
         "title": "系统设置15",
         "path": "/admin/routine/config/15",
         "type": "tab",
-        "icon": "el-icon-Setting",
+        "icon": "fa fa-address-book",
         "keepAlive": true
     }
 ]

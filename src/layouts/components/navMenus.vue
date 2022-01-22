@@ -63,7 +63,7 @@
             </div>
         </el-popover>
         <div @click="state.showLayoutDrawer = true" class="nav-menu-item">
-            <Icon class="nav-menu-icon" name="el-icon-Setting" size="19" />
+            <Icon class="nav-menu-icon" name="fa fa-cogs" size="18" />
         </div>
         <div class="layout-drawer">
             <el-drawer v-model="state.showLayoutDrawer" title="布局配置" size="18%">
@@ -123,7 +123,7 @@ const onFullScreen = () => {
         cursor: pointer;
         .nav-menu-icon {
             box-sizing: content-box;
-            color: var(--color-text-primary) !important;
+            color: var(--color-regular) !important;
         }
         &:hover {
             .icon {

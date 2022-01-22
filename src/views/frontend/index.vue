@@ -8,6 +8,7 @@
         <Icon size="60" color="red" name="local-lang" />
         <Icon size="50" color="blue" name="el-icon-Edit" />
         <Icon size="80" color="red" name="iconfont icon-ellipsis" />
+        <Icon name="fa fa-address-book" />
     </div>
 </template>
 
