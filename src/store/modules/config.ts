@@ -51,7 +51,7 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             const baConfig = Local.get(store.state.config.localKey.config) || {}
             let nameArr = name.split('.')
             if (nameArr[1]) {
-                if (baConfig[nameArr[0]][nameArr[1]]) {
+                if (baConfig[nameArr[0]] && baConfig[nameArr[0]][nameArr[1]]) {
                     state[nameArr[0]][nameArr[1]] = baConfig[nameArr[0]][nameArr[1]]
                 }
                 return state[nameArr[0]][nameArr[1]]
@@ -64,7 +64,7 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
         },
         menuCollapse: (state, getters) => {
             let menuCollapse = getters.getStateOrCache('layout.menuCollapse')
-            useCssVar('--default-aside-width', ref(null)).value = menuCollapse ? '64px':'260px'
+            useCssVar('--default-aside-width', ref(null)).value = menuCollapse ? '64px' : '260px'
             return menuCollapse
         },
     },
@@ -86,7 +86,11 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
 
             let name = data.name.split('.')
             if (name[1]) {
-                state[name[0]][name[1]] = baConfig[name[0]][name[1]] = data.value
+                state[name[0]][name[1]] = data.value
+                if (!baConfig[name[0]]) {
+                    baConfig[name[0]] = state[name[0]]
+                }
+                baConfig[name[0]][name[1]] = data.value
             } else {
                 state[data.name] = baConfig[data.name] = data.value
             }
