@@ -7,6 +7,8 @@
  * const el = ref(null)
  * const color = useCssVar('--color-primary', el)
  * color.value = 'red'
+ *
+ * 简便写法 useCssVar('--default-aside-width', ref(null)).value = '64px'
  */
 $--color-white: #ffffff !default;
 $--color-primary: #409eff !default;

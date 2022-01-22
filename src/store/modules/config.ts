@@ -2,6 +2,8 @@ import { Module } from 'vuex'
 import { ConfigStateTypes, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
 import { store } from '/@/store/index'
+import { useCssVar } from '@vueuse/core'
+import { ref } from 'vue'
 
 interface setObj {
     name: string
@@ -59,6 +61,11 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
                 }
                 return state[name]
             }
+        },
+        menuCollapse: (state, getters) => {
+            let menuCollapse = getters.getStateOrCache('layout.menuCollapse')
+            useCssVar('--default-aside-width', ref(null)).value = menuCollapse ? '64px':'260px'
+            return menuCollapse
         },
     },
     mutations: {

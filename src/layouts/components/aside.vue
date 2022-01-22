@@ -5,6 +5,15 @@
     </el-aside>
 </template>
 
+<script setup lang="ts">
+import { computed } from 'vue'
+import Logo from '/@/layouts/components/logo.vue'
+import MenuVertical from '/@/layouts/components/menuVertical.vue'
+import { useStore } from '/@/store/index'
+
+const store = useStore()
+</script>
+
 <style lang="scss">
 .layout-aside {
     background: var(--color-basic-white);
@@ -18,13 +27,3 @@
     overflow: hidden;
 }
 </style>
-
-<script setup lang="ts">
-import Logo from '/@/layouts/components/logo.vue'
-import MenuVertical from '/@/layouts/components/menuVertical.vue'
-import { useStore } from '/@/store/index'
-
-const store = useStore()
-
-const layout = store.getters['config/getStateOrCache']('adminLayout')
-</script>
