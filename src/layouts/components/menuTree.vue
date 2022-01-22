@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
     menus: () => [],
 })
 
-const defaultIcon = computed(() => store.state.config.defaultMenuIcon)
+const defaultIcon = computed(() => store.state.config.layout.menuDefaultIcon)
 
 const onLink = (url: string) => {
     window.open(url, '_blank')

@@ -4,7 +4,6 @@ import * as elIcons from '@element-plus/icons-vue'
 import router from '/@/router/index'
 import Icon from '/@/components/icon/index.vue'
 import { store } from '/@/store'
-import { viewMenu } from '../store/interface'
 
 export function registerIcons(app: App) {
     /*
@@ -44,13 +43,9 @@ export function loadJs(url: string): void {
  */
 export function setTitle(t: any = null) {
     nextTick(() => {
-        const tabsViewRoutes = store.state.navTabs.tabsViewRoutes
-        const currentRoute: viewMenu | undefined = tabsViewRoutes.find((route: viewMenu) => {
-            return route.path == router.currentRoute.value.path
-        })
         var webTitle: string = ''
-        if (currentRoute) {
-            webTitle = currentRoute.title
+        if (store.state.navTabs.activeRoute) {
+            webTitle = store.state.navTabs.activeRoute.title
         } else {
             webTitle = t ? t(router.currentRoute.value.meta.title) : (router.currentRoute.value.meta.title as string)
         }

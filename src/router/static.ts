@@ -43,7 +43,7 @@ const staticRoutes: Array<RouteRecordRaw> = [
                 },
             },
             {
-                path: 'routine/config',
+                path: 'routine/config/:id?',
                 name: 'routine/config',
                 component: () => import('/@/views/backend/routine/config.vue'),
                 meta: {

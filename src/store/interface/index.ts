@@ -14,8 +14,12 @@ export interface ConfigStateTypes {
         name: string
         value: string
     }[]
-    defaultMenuIcon: string
-    layoutMainAnimation: string
+    layout: {
+        mainAnimation: string
+        menuDefaultIcon: string
+        menuCollapse: boolean
+        menuUniqueOpened: boolean
+    }
 }
 
 // 管理员信息

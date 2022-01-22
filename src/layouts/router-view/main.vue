@@ -32,7 +32,7 @@ const state = reactive({
     keepAlive: false,
 })
 
-const layoutMainAnimation = computed(() => store.state.config.layoutMainAnimation)
+const layoutMainAnimation = computed(() => store.state.config.layout.mainAnimation)
 
 onMounted(() => {
     // 确保刷新页面时也能正确取得当前路由 keepAlive 参数

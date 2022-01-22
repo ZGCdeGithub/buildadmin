@@ -31,10 +31,16 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             { name: 'zh-cn', value: '中文简体' },
             { name: 'en', value: 'English' },
         ],
-        // 后台菜单项默认图标
-        defaultMenuIcon: 'el-icon-Minus',
-        // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
-        layoutMainAnimation: 'slide-right',
+        layout: {
+            // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
+            mainAnimation: 'slide-right',
+            // 后台菜单项默认图标
+            menuDefaultIcon: 'el-icon-Minus',
+            // 是否水平折叠收起菜单
+            menuCollapse: false,
+            // 是否只保持一个子菜单的展开
+            menuUniqueOpened: false,
+        },
     },
     getters: {
         // 从 state 或者本地缓存获取配置项

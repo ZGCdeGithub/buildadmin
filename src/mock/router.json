@@ -4,14 +4,45 @@
         "path": "/admin/dashboard",
         "type": "tab",
         "icon": "el-icon-Odometer",
-        "keepAlive": true
+        "keepAlive": true,
+        "children": [
+            {
+                "title": "系统设置1",
+                "path": "/admin/routine/config/111",
+                "type": "tab",
+                "icon": "el-icon-Setting",
+                "keepAlive": true
+            },
+            {
+                "title": "系统设置2",
+                "path": "/admin/routine/config/222",
+                "type": "tab",
+                "icon": "el-icon-Setting",
+                "keepAlive": true
+            }
+        ]
     },
     {
         "title": "系统设置",
         "path": "/admin/routine/config",
         "type": "tab",
         "icon": "el-icon-Setting",
-        "keepAlive": true
+        "keepAlive": true,
+        "children": [
+            {
+                "title": "系统设置1",
+                "path": "/admin/routine/config/111",
+                "type": "tab",
+                "icon": "el-icon-Setting",
+                "keepAlive": true
+            },
+            {
+                "title": "简书",
+                "path": "https://www.jianshu.com/p/120eaf50331c",
+                "type": "iframe",
+                "icon": "el-icon-Edit"
+            }
+        ]
     },
     {
         "title": "百度",
