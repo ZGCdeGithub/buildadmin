@@ -1,7 +1,7 @@
 <template>
-    <template v-for="menu in menus" :key="menu.path">
+    <template v-for="menu in menus">
         <template v-if="menu.children && menu.children.length > 0">
-            <el-sub-menu :index="menu.path">
+            <el-sub-menu :index="menu.path" :key="menu.path">
                 <template #title>
                     <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                     <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
@@ -10,15 +10,15 @@
             </el-sub-menu>
         </template>
         <template v-else>
-            <el-menu-item v-if="menu.type == 'tab'" :index="menu.path">
+            <el-menu-item v-if="menu.type == 'tab'" :index="menu.path" :key="menu.path">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
             </el-menu-item>
-            <el-menu-item v-if="menu.type == 'link'" index="" @click="onLink(menu.path)">
+            <el-menu-item v-if="menu.type == 'link'" index="" :key="menu.path" @click="onLink(menu.path)">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
             </el-menu-item>
-            <el-menu-item v-if="menu.type == 'iframe'" :index="menu.path">
+            <el-menu-item v-if="menu.type == 'iframe'" :index="menu.path" :key="menu.path">
                 <Icon :name="menu.icon ? menu.icon : defaultIcon" />
                 <span>{{ menu.title ? menu.title : $t('noTitle') }}</span>
             </el-menu-item>
