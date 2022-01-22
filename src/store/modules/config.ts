@@ -44,12 +44,21 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
     },
     getters: {
         // 从 state 或者本地缓存获取配置项
+        // name 支持`.`，列如 layout.menuCollapse
         getStateOrCache: (state: any) => (name: string) => {
             const baConfig = Local.get(store.state.config.localKey.config) || {}
-            if (baConfig[name]) {
-                state[name] = baConfig[name]
+            let nameArr = name.split('.')
+            if (nameArr[1]) {
+                if (baConfig[nameArr[0]][nameArr[1]]) {
+                    state[nameArr[0]][nameArr[1]] = baConfig[nameArr[0]][nameArr[1]]
+                }
+                return state[nameArr[0]][nameArr[1]]
+            } else {
+                if (baConfig[name]) {
+                    state[name] = baConfig[name]
+                }
+                return state[name]
             }
-            return state[name]
         },
     },
     mutations: {
@@ -64,9 +73,16 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             }
         },
         // 设置单个配置项并缓存到本地存储
+        // name 支持`.`，列如 layout.menuCollapse
         setAndCache(state: any, data: setObj): void {
             let baConfig = Local.get(store.state.config.localKey.config) || {}
-            state[data.name] = baConfig[data.name] = data.value
+
+            let name = data.name.split('.')
+            if (name[1]) {
+                state[name[0]][name[1]] = baConfig[name[0]][name[1]] = data.value
+            } else {
+                state[data.name] = baConfig[data.name] = data.value
+            }
             Local.set(store.state.config.localKey.config, baConfig)
         },
     },

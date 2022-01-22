@@ -4,9 +4,9 @@
             class="layouts-menu-vertical"
             router
             :collapse-transition="false"
-            :unique-opened="uniqueOpened"
+            :unique-opened="layoutConfig.menuUniqueOpened"
             :default-active="state.defaultActive"
-            :collapse="collapse"
+            :collapse="layoutConfig.menuCollapse"
             background-color="transparent"
         >
             <MenuTree :menus="menus" />
@@ -31,6 +31,7 @@ const state = reactive({
 })
 
 const menus = computed(() => store.state.navTabs.tabsViewRoutes)
+const layoutConfig = computed(() => store.getters['config/getStateOrCache']('layout'))
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {
@@ -54,9 +55,6 @@ onMounted(() => {
 onBeforeRouteUpdate((to) => {
     currentRouteActive(to)
 })
-
-const collapse = ref(false)
-const uniqueOpened = ref(false)
 </script>
 <style>
 .vertical-menus-scrollbar {

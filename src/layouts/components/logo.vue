@@ -2,9 +2,24 @@
     <div class="layout-logo">
         <img class="logo-img" src="~assets/logo.png" alt="logo" />
         <div class="website-name">BuildAdmin</div>
-        <Icon name="el-icon-Fold" size="20" class="fold" />
+        <Icon @click="onMenuCollapse" :name="menuCollapse ? 'local-unfold' : 'local-fold'" size="20" class="fold" />
     </div>
 </template>
+
+<script setup lang="ts">
+import { computed, toRaw } from 'vue'
+import { useStore } from '/@/store'
+const store = useStore()
+const menuCollapse = computed(() => store.getters['config/getStateOrCache']('layout.menuCollapse'))
+
+const onMenuCollapse = function () {
+    store.commit('config/setAndCache', {
+        name: 'layout.menuCollapse',
+        value: !menuCollapse.value,
+    })
+}
+</script>
+
 <style lang="scss">
 .layout-logo {
     width: 100%;
