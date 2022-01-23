@@ -78,6 +78,9 @@ onUnmounted(() => {
 </script>
 
 <style scoped lang="scss">
+.bd-contextmenu {
+    z-index: 9999;
+}
 .el-popper,
 .el-popper.is-light .el-popper__arrow::before {
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
