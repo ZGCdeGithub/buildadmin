@@ -100,8 +100,10 @@ const onFullScreen = () => {
         ElMessage.warning(t('layout.Full screen is not supported'))
         return false
     }
-    state.isFullScreen = !screenfull.isFullscreen
     screenfull.toggle()
+    screenfull.onchange(() => {
+        state.isFullScreen = screenfull.isFullscreen
+    })
 }
 </script>
 
