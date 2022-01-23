@@ -117,6 +117,7 @@ const toLastTab = () => {
 
 const closeTab = (route: viewMenu) => {
     store.commit('navTabs/closeTab', route)
+    proxy.eventBus.emit('onTabViewClose', route)
     if (activeRoute.value.path === route.path) {
         toLastTab()
     } else {

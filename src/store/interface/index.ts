@@ -1,5 +1,6 @@
 // 为 build-admin 提供类型化的 State
 // 变量名对应含义请在 ./modules/ 里边找
+import type { Component } from 'vue'
 
 export interface ConfigStateTypes {
     adminLayout: string
@@ -32,8 +33,9 @@ export interface viewMenu {
     path: string
     type?: string
     icon?: string
-    keepAlive?: boolean
+    keepAlive?: string
     children?: viewMenu[]
+    component?: Component
 }
 
 export interface NavTabs {

@@ -1,17 +1,11 @@
 <template>
     <el-main class="layout-main">
         <el-scrollbar class="layout-main-scrollbar" :style="layoutMainScrollbarStyle()" ref="mainScrollbarRef">
-            <router-view v-slot="{ Component }" :key="state.routerViewKey">
-                <!-- 避免动画失效 -->
+            <router-view v-slot="{ Component }">
                 <transition :name="layoutMainAnimation" mode="out-in">
-                    <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
-                    <!-- v-if需要写到 keep-alive 里边，否则第二个路由 keepAlive 失效 -->
-                    <keep-alive>
-                        <component v-if="state.keepAlive" :is="Component" :key="state.componentKey" />
+                    <keep-alive :include="state.keepAliveComponentNameList">
+                        <component :is="Component" :key="state.componentKey" />
                     </keep-alive>
-                </transition>
-                <transition :name="layoutMainAnimation" mode="out-in">
-                    <component v-if="!state.keepAlive" :is="Component" />
                 </transition>
             </router-view>
         </el-scrollbar>
@@ -19,45 +13,67 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, watch, computed, onBeforeMount, onUnmounted } from 'vue'
+import { reactive, onMounted, watch, computed, onBeforeMount, onUnmounted, nextTick } from 'vue'
 import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
 import { mainHeight as layoutMainScrollbarStyle } from '/@/utils/layout'
 import useCurrentInstance from '/@/utils/useCurrentInstance'
+import { viewMenu } from '/@/store/interface'
 
 const { proxy } = useCurrentInstance()
 
 const route = useRoute()
 const store = useStore()
 
-const state = reactive({
+const state: {
+    componentKey: string
+    keepAliveComponentNameList: string[]
+} = reactive({
     componentKey: route.path,
-    routerViewKey: route.path + '?t=' + Date.parse(new Date().toString()), // 单独的 routerViewKey 和 componentKey 以保证 keep-alive 和刷新功能都有效
-    keepAlive: false,
+    keepAliveComponentNameList: [],
 })
 
 const layoutMainAnimation = computed(() => store.getters['config/getStateOrCache']('layout.mainAnimation'))
 
+const addKeepAliveComponentName = function (keepAliveName: string | undefined) {
+    if (keepAliveName) {
+        let exist = state.keepAliveComponentNameList.find((name: string) => {
+            return name === keepAliveName
+        })
+        if (exist) return
+        state.keepAliveComponentNameList.push(keepAliveName)
+    }
+}
+
 onBeforeMount(() => {
-    proxy.eventBus.on('onTabViewRefresh', (path: string) => {
-        state.routerViewKey = path + '?t=' + Date.parse(new Date().toString())
+    proxy.eventBus.on('onTabViewRefresh', (menu: viewMenu) => {
+        state.keepAliveComponentNameList = state.keepAliveComponentNameList.filter((name: string) => menu.keepAlive !== name)
+        state.componentKey = ''
+        nextTick(() => {
+            state.componentKey = menu.path
+            addKeepAliveComponentName(menu.keepAlive)
+        })
+    })
+    proxy.eventBus.on('onTabViewClose', (menu: viewMenu) => {
+        state.keepAliveComponentNameList = state.keepAliveComponentNameList.filter((name: string) => menu.keepAlive !== name)
     })
 })
 
 onUnmounted(() => {
     proxy.eventBus.off('onTabViewRefresh')
+    proxy.eventBus.off('onTabViewClose')
 })
 
 onMounted(() => {
     // 确保刷新页面时也能正确取得当前路由 keepAlive 参数
-    state.keepAlive = store.state.navTabs.activeRoute?.keepAlive ? store.state.navTabs.activeRoute.keepAlive : false
+    addKeepAliveComponentName(store.state.navTabs.activeRoute?.keepAlive)
 })
 
 watch(
     () => route.path,
     () => {
         state.componentKey = route.path
-        state.keepAlive = store.state.navTabs.activeRoute?.keepAlive ? store.state.navTabs.activeRoute.keepAlive : false
+        addKeepAliveComponentName(store.state.navTabs.activeRoute?.keepAlive)
     }
 )
 </script>
