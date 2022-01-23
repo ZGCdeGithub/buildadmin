@@ -25,5 +25,6 @@ const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
     box-shadow: var(--el-box-shadow-light);
     border-radius: var(--el-border-radius-base);
     overflow: hidden;
+    transition: width 0.3s ease;
 }
 </style>
