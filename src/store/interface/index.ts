@@ -6,11 +6,6 @@ export interface ConfigStateTypes {
     adminLayout: string
     defaultLang: string
     fallbackLang: string
-    localKey: {
-        adminInfo: string
-        config: string
-        lastTabView: string
-    }
     langArray: {
         name: string
         value: string
@@ -42,7 +37,7 @@ export interface NavTabs {
     activeIndex: number
     activeRoute: viewMenu | null
     tabsView: Array<viewMenu>
-    tabCurrenFull: Boolean
+    tabFullScreen: Boolean
     tabsViewRoutes: Array<viewMenu>
 }
 

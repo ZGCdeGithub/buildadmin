@@ -1,6 +1,6 @@
 <template>
     <el-aside class="layout-aside">
-        <Logo />
+        {{ tabFullScreen }}<Logo />
         <MenuVertical />
     </el-aside>
 </template>
@@ -12,6 +12,9 @@ import MenuVertical from '/@/layouts/components/menuVertical.vue'
 import { useStore } from '/@/store/index'
 
 const store = useStore()
+
+const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
+console.log(tabFullScreen)
 </script>
 
 <style lang="scss">

@@ -15,8 +15,7 @@ const route = useRoute()
 
 // 初始化 element 的语言包
 const { t, getLocaleMessage } = useI18n()
-const lang = getLocaleMessage(store.getters['config/getStateOrCache']('defaultLang')) as any
-
+const lang = getLocaleMessage(store.state.config.defaultLang) as any
 onMounted(() => {
     iconfontInit()
 })

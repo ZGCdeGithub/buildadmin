@@ -21,7 +21,7 @@ const assignLocale: assignLocale = {
 }
 
 export async function loadLang(app: App) {
-    const locale = store.getters['config/getStateOrCache']('defaultLang')
+    const locale = store.state.config.defaultLang
 
     // 加载框架语言包
     const lang = await import(`./frame/${locale}.ts`)

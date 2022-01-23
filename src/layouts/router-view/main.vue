@@ -33,7 +33,7 @@ const state: {
     keepAliveComponentNameList: [],
 })
 
-const layoutMainAnimation = computed(() => store.getters['config/getStateOrCache']('layout.mainAnimation'))
+const layoutMainAnimation = computed(() => store.state.config.layout.mainAnimation)
 
 const addKeepAliveComponentName = function (keepAliveName: string | undefined) {
     if (keepAliveName) {

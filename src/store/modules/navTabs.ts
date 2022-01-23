@@ -1,6 +1,7 @@
 import { Module } from 'vuex'
 import { viewMenu, NavTabs, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
+import { TAB_VIEW_CONFIG } from '/@/store/constant/cacheKey'
 
 // 在菜单集合中递归查找 path 的数据
 export function findMenu(tabsViewRoutes: viewMenu[], path: string): viewMenu | undefined {
@@ -28,6 +29,8 @@ function encodeRoutesURI(data: viewMenu[]): viewMenu[] {
     return data
 }
 
+const tabViewConfig = Local.get(TAB_VIEW_CONFIG) || {}
+
 const NavTabsModule: Module<NavTabs, RootStateTypes> = {
     namespaced: true,
     state: {
@@ -38,7 +41,7 @@ const NavTabsModule: Module<NavTabs, RootStateTypes> = {
         // tab列表
         tabsView: [],
         // 当前tab是否全屏
-        tabCurrenFull: false,
+        tabFullScreen: typeof tabViewConfig['tabFullScreen'] != 'undefined' ? tabViewConfig['tabFullScreen'] : false,
         // 从后台加载到的菜单路由列表
         tabsViewRoutes: [],
     },
@@ -83,7 +86,9 @@ const NavTabsModule: Module<NavTabs, RootStateTypes> = {
             state.tabsViewRoutes = data
         },
         setFullScreen(state, fullScreen: boolean): void {
-            state.tabCurrenFull = fullScreen
+            let tabViewConfig = Local.get(TAB_VIEW_CONFIG) || {}
+            state.tabFullScreen = tabViewConfig['tabFullScreen'] = fullScreen
+            Local.set(TAB_VIEW_CONFIG, tabViewConfig)
         },
     },
     actions: {

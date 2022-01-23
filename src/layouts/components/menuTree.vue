@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<Props>(), {
     menus: () => [],
 })
 
-const defaultIcon = computed(() => store.getters['config/getStateOrCache']('layout.menuDefaultIcon'))
+const defaultIcon = computed(() => store.state.config.layout.menuDefaultIcon)
 
 const onLink = (url: string) => {
     window.open(url, '_blank')
@@ -47,7 +47,8 @@ const onLink = (url: string) => {
 </script>
 
 <style scoped lang="scss">
-.el-sub-menu .icon,.el-menu-item .icon {
+.el-sub-menu .icon,
+.el-menu-item .icon {
     vertical-align: middle;
     margin-right: 5px;
     width: 24px;

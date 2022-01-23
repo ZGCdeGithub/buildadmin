@@ -1,29 +1,20 @@
 import { Module } from 'vuex'
 import { AdminInfoStateTypes, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
-import { store } from '/@/store/index'
+import { ADMIN_INFO } from '/@/store/constant/cacheKey'
 
+const adminInfo = Local.get(ADMIN_INFO) || {}
 const AdminInfoModule: Module<AdminInfoStateTypes, RootStateTypes> = {
     namespaced: true,
     state: {
-        adminInfo: {},
-    },
-    getters: {
-        // 从 state 或者本地缓存获取管理员资料
-        getStateOrCache: (state) => () => {
-            const adminInfo = Local.get(store.state.config.localKey.adminInfo) || {}
-            if (adminInfo && adminInfo.token) {
-                state.adminInfo = adminInfo
-            }
-            return state.adminInfo
-        },
+        adminInfo: adminInfo && adminInfo.token ? adminInfo : {},
     },
     mutations: {
         // 设置管理员资料
         setAndCache(state, data: object): void {
-            let adminInfo = Local.get(store.state.config.localKey.adminInfo) || {}
+            let adminInfo = Local.get(ADMIN_INFO) || {}
             state.adminInfo = adminInfo = data
-            Local.set(store.state.config.localKey.adminInfo, adminInfo)
+            Local.set(ADMIN_INFO, adminInfo)
         },
     },
 }

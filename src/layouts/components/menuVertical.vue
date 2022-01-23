@@ -31,7 +31,7 @@ const state = reactive({
 })
 
 const menus = computed(() => store.state.navTabs.tabsViewRoutes)
-const layoutConfig = computed(() => store.getters['config/getStateOrCache']('layout'))
+const layoutConfig = computed(() => store.state.config.layout)
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {

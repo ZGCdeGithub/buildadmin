@@ -28,15 +28,7 @@ import { editDefaultLang } from '/@/lang/index'
     },
 }) */
 
-const defaultLang = computed(() => {
-    return store.getters['config/getStateOrCache']('defaultLang')
-})
-
-/* if (store.getters['config/getStateOrCache']('defaultLang') == 'zh-cn') {
-    setTimeout(() => {
-        editDefaultLang('en')
-    }, 5000)
-} */
+const defaultLang = computed(() => store.state.config.defaultLang)
 
 /* setTimeout(() => {
     store.commit('config/setAndCache', {
@@ -45,8 +37,6 @@ const defaultLang = computed(() => {
     })
     console.log('设置了')
 }, 2000) */
-
-// console.log(store.getters['config/getStateOrCache']('defaultLang'))
 
 /* setTimeout(() => {
     store.commit('config/setMulti', {

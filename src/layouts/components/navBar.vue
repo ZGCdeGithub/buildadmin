@@ -80,7 +80,6 @@ const onContextmenuItem = async (item: ContextmenuItemClickEmitArg) => {
             }
             break
         case 'fullScreen':
-            console.log('全屏')
             if (route.path !== menu?.path) {
                 router.push(menu?.path as string)
             }
