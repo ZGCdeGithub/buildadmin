@@ -81,9 +81,9 @@ watch(
 <style scoped lang="scss">
 .layout-container .layout-main {
     padding: 0 !important;
-    margin-top: 15px;
     overflow: hidden;
     width: 100%;
+    height: 100%;
 }
 .layout-main-scrollbar {
     width: 100%;

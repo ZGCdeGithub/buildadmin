@@ -6,6 +6,7 @@ export default {
     'switch language': '切换语言',
     layout: {
         seting: '设置',
+        'Exit full screen': '退出全屏',
+        'Full screen is not supported': '您的浏览器不支持全屏，请更换浏览器再试~',
     },
-    'Full screen is not supported': '您的浏览器不支持全屏，请更换浏览器再试~',
 }

@@ -97,7 +97,7 @@ const onCurrentNavMenu = (status: boolean, name: string) => {
 
 const onFullScreen = () => {
     if (!screenfull.isEnabled) {
-        ElMessage.warning(t('Full screen is not supported'))
+        ElMessage.warning(t('layout.Full screen is not supported'))
         return false
     }
     state.isFullScreen = !screenfull.isFullscreen

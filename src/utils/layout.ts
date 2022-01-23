@@ -1,4 +1,5 @@
-import { CSSProperties } from 'vue'
+import { computed, CSSProperties } from 'vue'
+import { useStore } from '/@/store'
 
 /**
  * main高度
@@ -6,7 +7,13 @@ import { CSSProperties } from 'vue'
  * @returns CSSProperties
  */
 export function mainHeight(extra: number = 0): CSSProperties {
-    let height = 75 + extra
+    const store = useStore()
+    const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
+
+    let height = extra
+    if (!tabFullScreen.value) {
+        height += 75
+    }
     return {
         height: 'calc(100vh - ' + height.toString() + 'px)',
     }

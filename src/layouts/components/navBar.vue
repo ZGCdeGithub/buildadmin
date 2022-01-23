@@ -47,9 +47,9 @@ const contextmenuRef = ref()
 const contextmenuItems: ContextMenuItem[] = [
     { name: 'refresh', label: '重新加载', icon: 'fa fa-refresh' },
     { name: 'close', label: '关闭标签', icon: 'fa fa-times' },
+    { name: 'fullScreen', label: '当前标签全屏', icon: 'el-icon-FullScreen' },
     { name: 'closeOther', label: '关闭其他标签', icon: 'fa fa-minus' },
     { name: 'closeAll', label: '关闭全部标签', icon: 'fa fa-stop' },
-    { name: 'fullScreen', label: '当前标签全屏', icon: 'el-icon-FullScreen' },
 ]
 const onContextmenu = (menu: viewMenu, el: MouseEvent) => {
     const { clientX, clientY } = el

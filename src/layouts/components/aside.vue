@@ -1,6 +1,6 @@
 <template>
-    <el-aside class="layout-aside">
-        {{ tabFullScreen }}<Logo />
+    <el-aside v-if="!tabFullScreen" class="layout-aside">
+        <Logo />
         <MenuVertical />
     </el-aside>
 </template>
@@ -14,15 +14,12 @@ import { useStore } from '/@/store/index'
 const store = useStore()
 
 const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
-console.log(tabFullScreen)
 </script>
 
 <style lang="scss">
 .layout-aside {
     background: var(--color-basic-white);
-    position: fixed;
-    top: 16px;
-    left: 16px;
+    margin: 16px;
     width: var(--default-aside-width);
     height: calc(100vh - 32px);
     box-shadow: var(--el-box-shadow-light);
