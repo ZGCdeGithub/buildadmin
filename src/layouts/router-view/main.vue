@@ -1,7 +1,7 @@
 <template>
     <el-main class="layout-main">
         <el-scrollbar class="layout-main-scrollbar" :style="layoutMainScrollbarStyle()" ref="mainScrollbarRef">
-            <router-view v-slot="{ Component }">
+            <router-view v-slot="{ Component }" :key="state.routerViewKey">
                 <!-- 避免动画失效 -->
                 <transition :name="layoutMainAnimation" mode="out-in">
                     <!-- 不使用 include 因为 setup 语法糖不方便为组件命名 -->
@@ -11,7 +11,7 @@
                     </keep-alive>
                 </transition>
                 <transition :name="layoutMainAnimation" mode="out-in">
-                    <component v-if="!state.keepAlive" :is="Component" :key="state.componentKey" />
+                    <component v-if="!state.keepAlive" :is="Component" />
                 </transition>
             </router-view>
         </el-scrollbar>
@@ -19,20 +19,34 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, CSSProperties, watch, computed } from 'vue'
+import { reactive, onMounted, watch, computed, onBeforeMount, onUnmounted } from 'vue'
 import { useStore } from '/@/store/index'
 import { useRoute } from 'vue-router'
 import { mainHeight as layoutMainScrollbarStyle } from '/@/utils/layout'
+import useCurrentInstance from '/@/utils/useCurrentInstance'
+
+const { proxy } = useCurrentInstance()
 
 const route = useRoute()
 const store = useStore()
 
 const state = reactive({
-    componentKey: route.fullPath,
+    componentKey: route.path,
+    routerViewKey: route.path + '?t=' + Date.parse(new Date().toString()), // 单独的 routerViewKey 和 componentKey 以保证 keep-alive 和刷新功能都有效
     keepAlive: false,
 })
 
 const layoutMainAnimation = computed(() => store.getters['config/getStateOrCache']('layout.mainAnimation'))
+
+onBeforeMount(() => {
+    proxy.eventBus.on('onTabViewRefresh', (path: string) => {
+        state.routerViewKey = path + '?t=' + Date.parse(new Date().toString())
+    })
+})
+
+onUnmounted(() => {
+    proxy.eventBus.off('onTabViewRefresh')
+})
 
 onMounted(() => {
     // 确保刷新页面时也能正确取得当前路由 keepAlive 参数
@@ -42,7 +56,7 @@ onMounted(() => {
 watch(
     () => route.path,
     () => {
-        state.componentKey = route.fullPath
+        state.componentKey = route.path
         state.keepAlive = store.state.navTabs.activeRoute?.keepAlive ? store.state.navTabs.activeRoute.keepAlive : false
     }
 )

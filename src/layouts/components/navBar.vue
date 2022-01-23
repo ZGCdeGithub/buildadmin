@@ -2,7 +2,7 @@
     <div class="nav-bar">
         <div class="nav-tabs">
             <template v-for="(item, idx) in tabsView">
-                <div @click="onChangeNavTab(item)" class="bd-nav-tab" :ref="tabsRefs.set">
+                <div @click="router.push(item.path)" @contextmenu.prevent="onContextmenu(item, $event)" class="bd-nav-tab" :ref="tabsRefs.set">
                     {{ item.title }}
                     <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
                         <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
@@ -11,18 +11,24 @@
             </template>
             <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
         </div>
-        <navMenus />
+        <NavMenus />
+        <Contextmenu ref="contextmenuRef" :items="contextmenuItems" @contextmenuItemClick="onContextmenuItem" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, nextTick, onMounted, ref } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
-import navMenus from '/@/layouts/components/navMenus.vue'
 import { useStore } from '/@/store'
 import { viewMenu } from '/@/store/interface'
 import { useTemplateRefsList } from '@vueuse/core'
 import { useState } from '/@/store/useMapper'
+import NavMenus from '/@/layouts/components/navMenus.vue'
+import Contextmenu from '/@/components/contextmenu/index.vue'
+import type { ContextMenuItem, ContextmenuItemClickEmitArg } from '/@/components/contextmenu/interface'
+import useCurrentInstance from '/@/utils/useCurrentInstance'
+
+const { proxy } = useCurrentInstance()
 
 const tabsRefs = useTemplateRefsList<HTMLDivElement>()
 
@@ -30,15 +36,57 @@ const route = useRoute()
 const router = useRouter()
 const store = useStore()
 
-const { activeIndex, activeRoute, tabsView, tabsViewRoutes } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView', 'tabsViewRoutes'])
+const { activeIndex, activeRoute, tabsView } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView'])
 
 const activeBoxStyle = reactive({
     width: '0',
     transform: 'translateX(0px)',
 })
 
-const onChangeNavTab = (route: viewMenu) => {
-    router.push(route.path)
+const contextmenuRef = ref()
+const contextmenuItems: ContextMenuItem[] = [
+    { name: 'refresh', label: '重新加载', icon: 'fa fa-refresh' },
+    { name: 'close', label: '关闭标签', icon: 'fa fa-times' },
+    { name: 'closeOther', label: '关闭其他标签', icon: 'fa fa-minus' },
+    { name: 'closeAll', label: '关闭全部标签', icon: 'fa fa-stop' },
+    { name: 'fullScreen', label: '当前标签全屏', icon: 'el-icon-FullScreen' },
+]
+const onContextmenu = (menu: viewMenu, el: MouseEvent) => {
+    const { clientX, clientY } = el
+    contextmenuRef.value.onShowContextmenu(menu, {
+        x: clientX,
+        y: clientY,
+    })
+}
+const onContextmenuItem = async (item: ContextmenuItemClickEmitArg) => {
+    const { name, menu } = item
+    switch (name) {
+        case 'refresh':
+            proxy.eventBus.emit('onTabViewRefresh', menu)
+            break
+        case 'close':
+            closeTab(menu as viewMenu)
+            break
+        case 'closeOther':
+            store.commit('navTabs/closeTabs', menu)
+            store.commit('navTabs/setActiveRoute', menu?.path)
+            break
+        case 'closeAll':
+            store.commit('navTabs/closeTabs')
+            if (route.path === '/admin/dashboard') {
+                router.go(0)
+            } else {
+                router.push('/admin')
+            }
+            break
+        case 'fullScreen':
+            console.log('全屏')
+            if (route.path !== menu?.path) {
+                router.push(menu?.path as string)
+            }
+            store.commit('navTabs/setFullScreen', true)
+            break
+    }
 }
 
 // tab 激活状态切换

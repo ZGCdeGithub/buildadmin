@@ -61,6 +61,14 @@ const NavTabsModule: Module<NavTabs, RootStateTypes> = {
                 }
             })
         },
+        // 关闭多个标签, retainMenu 代表需要保留的标签,否则关闭全部标签
+        closeTabs(state, retainMenu: viewMenu | undefined): void {
+            if (retainMenu) {
+                state.tabsView = [retainMenu]
+            } else {
+                state.tabsView = []
+            }
+        },
         setActiveRoute(state, path: string): void {
             const currentRoute = findMenu(state.tabsViewRoutes, path)
             if (!currentRoute) return
@@ -73,6 +81,9 @@ const NavTabsModule: Module<NavTabs, RootStateTypes> = {
         },
         setTabsViewRoutes(state, data: viewMenu[]): void {
             state.tabsViewRoutes = data
+        },
+        setFullScreen(state, fullScreen: boolean): void {
+            state.tabCurrenFull = fullScreen
         },
     },
     actions: {
