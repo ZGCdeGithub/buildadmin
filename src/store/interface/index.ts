@@ -3,7 +3,6 @@
 import type { Component } from 'vue'
 
 export interface ConfigStateTypes {
-    adminLayout: string
     defaultLang: string
     fallbackLang: string
     langArray: {
@@ -11,10 +10,19 @@ export interface ConfigStateTypes {
         value: string
     }[]
     layout: {
+        layoutMode: string
         mainAnimation: string
+        menuWidth: string
         menuDefaultIcon: string
         menuCollapse: boolean
         menuUniqueOpened: boolean
+        menuBackground: string
+        menuActiveBackground: string
+        menuActiveColor: string
+        menuTopBarBackground: string
+        headerBarBackground: string
+        headerBarTabActiveBackground: string
+        headerBarTabActiveColor: string
     }
 }
 

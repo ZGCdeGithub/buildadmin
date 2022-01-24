@@ -12,8 +12,6 @@ interface setObj {
 
 // State 默认值 => 与缓存中存有的数据合并来赋初始值
 var state: ConfigStateTypes = {
-    // 后台管理布局方法，可选值<Default|Classic|Streamline>
-    adminLayout: 'Default',
     // 默认语言，可选值<zh-cn|en>
     defaultLang: 'zh-cn',
     // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
@@ -24,14 +22,32 @@ var state: ConfigStateTypes = {
         { name: 'en', value: 'English' },
     ],
     layout: {
+        // 后台布局方式，可选值<Default|Classic|Streamline>
+        layoutMode: 'Default',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
-        // 后台菜单项默认图标
+        // 侧边菜单宽度(展开时)
+        menuWidth: '260px',
+        // 侧边菜单项默认图标
         menuDefaultIcon: 'el-icon-Minus',
         // 是否水平折叠收起菜单
         menuCollapse: false,
-        // 是否只保持一个子菜单的展开
+        // 是否只保持一个子菜单的展开(手风琴)
         menuUniqueOpened: false,
+        // 侧边菜单背景色
+        menuBackground: '#ffffff',
+        // 侧边菜单激活项背景色
+        menuActiveBackground: 'transparent',
+        // 侧边菜单激活项字体色
+        menuActiveColor: '#409eff',
+        // 侧边菜单顶栏背景色
+        menuTopBarBackground: '#fcfcfc',
+        // 顶栏背景色(若布局需要才使用)
+        headerBarBackground: 'transparent',
+        // 顶栏激活项背景色
+        headerBarTabActiveBackground: '#ffffff',
+        // 顶栏激活项字体色
+        headerBarTabActiveColor: '#000000',
     },
 }
 const baConfig = Local.get(CONFIG) || {}
