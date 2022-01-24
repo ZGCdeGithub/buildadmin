@@ -38,6 +38,11 @@ body,
 .h100 {
     height: 100% !important;
 }
+.bd-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 /* 页面切换动画
 ------------------------------- */

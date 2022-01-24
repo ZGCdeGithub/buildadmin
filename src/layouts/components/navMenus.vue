@@ -62,24 +62,10 @@
                 </div>
             </div>
         </el-popover>
-        <div @click="state.showLayoutDrawer = true" class="nav-menu-item">
+        <div @click="onSetState('showDrawer', true)" class="nav-menu-item">
             <Icon class="nav-menu-icon" name="fa fa-cogs" size="18" />
         </div>
-        <div class="layout-config-drawer">
-            <el-form ref="formRef" :model="state.config">
-                <el-drawer v-model="state.showLayoutDrawer" title="布局配置" size="310px">
-                    <el-divider border-style="dashed">布局风格</el-divider>
-                    <div class="layout-config-aside">
-                        <el-form-item label="侧边菜单宽度(展开时)">
-                            <el-input @input="onMenuWidth" type="number" v-model="state.config.menuWidth">
-                                <template #append>px</template>
-                            </el-input>
-                        </el-form-item>
-                        <!-- <el-switch v-model="state.config.menuWidth" class="mb-2" active-text="Pay by month" inactive-text="Pay by year"></el-switch> -->
-                    </div>
-                </el-drawer>
-            </el-form>
-        </div>
+        <Config />
     </div>
 </template>
 
@@ -90,6 +76,7 @@ import screenfull from 'screenfull'
 import { store } from '/@/store/index'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
+import Config from '/@/layouts/components/config.vue'
 
 const { t } = useI18n()
 
@@ -97,17 +84,7 @@ const state = reactive({
     isFullScreen: false,
     currentNavMenu: '',
     showLayoutDrawer: false,
-    config: {
-        menuWidth: store.state.config.layout.menuWidth,
-    },
 })
-
-const onMenuWidth = (value: string) => {
-    store.commit('config/setAndCache', {
-        name: 'layout.menuWidth',
-        value: value,
-    })
-}
 
 const langArray = computed(() => store.state.config.langArray)
 
@@ -125,18 +102,16 @@ const onFullScreen = () => {
         state.isFullScreen = screenfull.isFullscreen
     })
 }
+
+const onSetState = (name: string, value: any) => {
+    store.commit('config/set', {
+        name: 'layout.' + name,
+        value: value,
+    })
+}
 </script>
 
 <style scoped lang="scss">
-.layout-config-drawer :deep(.el-input__inner) {
-    padding: 0 0 0 6px;
-}
-.layout-config-drawer :deep(.el-input-group__append) {
-    padding: 0 10px;
-}
-.layout-config-drawer :deep(.el-drawer__header) {
-    margin-bottom: 0 !important;
-}
 .nav-menus {
     display: flex;
     align-items: center;

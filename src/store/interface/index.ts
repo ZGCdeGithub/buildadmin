@@ -10,6 +10,7 @@ export interface ConfigStateTypes {
         value: string
     }[]
     layout: {
+        showDrawer: boolean
         layoutMode: string
         mainAnimation: string
         menuWidth: number

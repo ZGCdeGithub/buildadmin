@@ -2,8 +2,6 @@ import { Module } from 'vuex'
 import { ConfigStateTypes, RootStateTypes } from '/@/store/interface/index'
 import { Local } from '/@/utils/storage'
 import { CONFIG } from '/@/store/constant/cacheKey'
-import { useCssVar } from '@vueuse/core'
-import { ref } from 'vue'
 
 interface setObj {
     name: string
@@ -14,10 +12,22 @@ interface setObj {
 var state: ConfigStateTypes = {
     // 布局配置
     layout: {
+        /* 全局 */
+        showDrawer: false,
         // 后台布局方式，可选值<Default|Classic|Streamline>
         layoutMode: 'Default',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
+
+        /* 侧边菜单 */
+        // 侧边菜单背景色
+        menuBackground: '#ffffff',
+        // 侧边菜单激活项背景色
+        menuActiveBackground: '#ffffff',
+        // 侧边菜单激活项字体色
+        menuActiveColor: '#409eff',
+        // 侧边菜单顶栏背景色
+        menuTopBarBackground: '#fcfcfc',
         // 侧边菜单宽度(展开时)，单位px
         menuWidth: 260,
         // 侧边菜单项默认图标
@@ -26,20 +36,14 @@ var state: ConfigStateTypes = {
         menuCollapse: false,
         // 是否只保持一个子菜单的展开(手风琴)
         menuUniqueOpened: false,
-        // 侧边菜单背景色
-        menuBackground: '#ffffff',
-        // 侧边菜单激活项背景色
-        menuActiveBackground: 'transparent',
-        // 侧边菜单激活项字体色
-        menuActiveColor: '#409eff',
-        // 侧边菜单顶栏背景色
-        menuTopBarBackground: '#fcfcfc',
-        // 顶栏背景色(若布局需要才使用)
-        headerBarBackground: 'transparent',
+
+        /* 顶栏 */
         // 顶栏激活项背景色
         headerBarTabActiveBackground: '#ffffff',
         // 顶栏激活项字体色
         headerBarTabActiveColor: '#000000',
+        // 顶栏背景色(若布局需要才使用)
+        headerBarBackground: '#ffffff',
     },
     // 默认语言，可选值<zh-cn|en>
     defaultLang: 'zh-cn',
@@ -65,8 +69,14 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
     },
     mutations: {
         // 设置单个配置项
+        // name 支持`.`，列如 layout.menuCollapse
         set(state: any, data: setObj): void {
-            state[data.name] = data.value
+            let name = data.name.split('.')
+            if (name[1]) {
+                state[name[0]][name[1]] = data.value
+            } else {
+                state[data.name] = data.value
+            }
         },
         // 批量设置配置项
         setMulti(state: any, data: object): void {
