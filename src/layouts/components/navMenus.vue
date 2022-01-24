@@ -2,7 +2,7 @@
     <div class="nav-menus">
         <router-link class="h100" target="_blank" :title="t('home')" to="/">
             <div class="nav-menu-item">
-                <Icon :color="headerBarTabActiveColor" class="nav-menu-icon" name="el-icon-Monitor" size="18" />
+                <Icon :color="headerBarTabColor" class="nav-menu-icon" name="el-icon-Monitor" size="18" />
             </div>
         </router-link>
         <el-dropdown
@@ -15,7 +15,7 @@
             :hide-on-click="true"
         >
             <div class="nav-menu-item" :class="state.currentNavMenu == 'lang' ? 'hover' : ''">
-                <Icon :color="headerBarTabActiveColor" class="nav-menu-icon" name="local-lang" size="18" />
+                <Icon :color="headerBarTabColor" class="nav-menu-icon" name="local-lang" size="18" />
             </div>
             <template #dropdown>
                 <el-dropdown-menu class="chang-lang">
@@ -26,8 +26,8 @@
             </template>
         </el-dropdown>
         <div @click="onFullScreen" class="nav-menu-item" :class="state.isFullScreen ? 'hover' : ''">
-            <Icon :color="headerBarTabActiveColor" class="nav-menu-icon" v-if="state.isFullScreen" name="local-full-screen-cancel" size="18" />
-            <Icon :color="headerBarTabActiveColor" class="nav-menu-icon" v-else name="el-icon-FullScreen" size="18" />
+            <Icon :color="headerBarTabColor" class="nav-menu-icon" v-if="state.isFullScreen" name="local-full-screen-cancel" size="18" />
+            <Icon :color="headerBarTabColor" class="nav-menu-icon" v-else name="el-icon-FullScreen" size="18" />
         </div>
         <el-popover
             @show="onCurrentNavMenu(true, 'adminInfo')"
@@ -63,7 +63,7 @@
             </div>
         </el-popover>
         <div @click="onSetState('showDrawer', true)" class="nav-menu-item">
-            <Icon :color="headerBarTabActiveColor" class="nav-menu-icon" name="fa fa-cogs" size="18" />
+            <Icon :color="headerBarTabColor" class="nav-menu-icon" name="fa fa-cogs" size="18" />
         </div>
         <Config />
     </div>
@@ -87,8 +87,9 @@ const state = reactive({
 })
 
 const langArray = computed(() => store.state.config.langArray)
-const headerBarTabActiveColor = computed(() => store.state.config.layout.headerBarTabActiveColor)
-const headerBarTabActiveBackground = computed(() => store.state.config.layout.headerBarTabActiveBackground)
+const headerBarTabColor = computed(() => store.state.config.layout.headerBarTabColor)
+const headerBarBackground = computed(() => store.state.config.layout.headerBarBackground)
+const headerBarHoverBackground = computed(() => store.state.config.layout.headerBarHoverBackground)
 
 const onCurrentNavMenu = (status: boolean, name: string) => {
     state.currentNavMenu = status ? name : ''
@@ -120,7 +121,7 @@ const onSetState = (name: string, value: any) => {
     height: 100%;
     margin-left: auto;
     border-radius: var(--el-border-radius-base);
-    background-color: v-bind(headerBarTabActiveBackground);
+    background-color: v-bind(headerBarBackground);
     box-shadow: var(--el-box-shadow-light);
     .nav-menu-item {
         height: 100%;
@@ -145,7 +146,7 @@ const onSetState = (name: string, value: any) => {
         align-items: center;
         cursor: pointer;
         user-select: none;
-        color: v-bind(headerBarTabActiveColor);
+        color: v-bind(headerBarTabColor);
     }
     .admin-name {
         padding-left: 6px;
@@ -154,7 +155,7 @@ const onSetState = (name: string, value: any) => {
     .admin-info:hover,
     .nav-menu-item.hover,
     .admin-info.hover {
-        background: var(--color-bg-1);
+        background: v-bind(headerBarHoverBackground);
     }
 }
 .chang-lang :deep(.el-dropdown-menu__item) {

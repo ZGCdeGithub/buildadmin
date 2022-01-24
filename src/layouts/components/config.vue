@@ -112,23 +112,29 @@
 
                         <el-divider border-style="dashed">顶栏</el-divider>
                         <div class="layout-config-aside">
-                            <el-form-item label="顶栏激活项背景色">
+                            <el-form-item label="顶栏背景色">
+                                <el-color-picker @change="onCommitState($event, 'headerBarBackground')" v-model="config.headerBarBackground" />
+                            </el-form-item>
+                            <el-form-item label="顶栏文字色">
+                                <el-color-picker @change="onCommitState($event, 'headerBarTabColor')" v-model="config.headerBarTabColor" />
+                            </el-form-item>
+                            <el-form-item label="顶栏悬停时背景色">
+                                <el-color-picker
+                                    @change="onCommitState($event, 'headerBarHoverBackground')"
+                                    v-model="config.headerBarHoverBackground"
+                                />
+                            </el-form-item>
+                            <el-form-item label="顶栏菜单激活项背景色">
                                 <el-color-picker
                                     @change="onCommitState($event, 'headerBarTabActiveBackground')"
                                     v-model="config.headerBarTabActiveBackground"
                                 />
                             </el-form-item>
-                            <el-form-item label="顶栏激活项文字色">
+                            <el-form-item label="顶栏菜单激活项文字色">
                                 <el-color-picker
                                     @change="onCommitState($event, 'headerBarTabActiveColor')"
                                     v-model="config.headerBarTabActiveColor"
                                 />
-                            </el-form-item>
-                            <el-form-item label="顶栏文字色">
-                                <el-color-picker @change="onCommitState($event, 'headerBarTabColor')" v-model="config.headerBarTabColor" />
-                            </el-form-item>
-                            <el-form-item label="顶栏背景色(若布局需要才使用)">
-                                <el-color-picker @change="onCommitState($event, 'headerBarBackground')" v-model="config.headerBarBackground" />
                             </el-form-item>
                         </div>
                         <el-popconfirm @confirm="restoreDefault" title="确定要恢复全部配置到默认值吗?">

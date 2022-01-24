@@ -46,8 +46,10 @@ var state: ConfigStateTypes = {
         headerBarTabActiveBackground: '#ffffff',
         // 顶栏激活项文字色
         headerBarTabActiveColor: '#000000',
-        // 顶栏背景色(若布局需要才使用)
+        // 顶栏背景色
         headerBarBackground: '#ffffff',
+        // 顶栏悬停时背景色
+        headerBarHoverBackground: '#f5f5f5',
     },
     // 默认语言，可选值<zh-cn|en>
     defaultLang: 'zh-cn',

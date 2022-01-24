@@ -24,6 +24,7 @@ export interface ConfigStateTypes {
         menuTopBarBackground: string
         headerBarTabColor: string
         headerBarBackground: string
+        headerBarHoverBackground: string
         headerBarTabActiveBackground: string
         headerBarTabActiveColor: string
     }
