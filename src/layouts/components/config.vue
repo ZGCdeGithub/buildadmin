@@ -92,7 +92,7 @@
                                 <el-color-picker @change="onCommitState($event, 'menuTopBarBackground')" v-model="config.menuTopBarBackground" />
                             </el-form-item>
                             <el-form-item label="侧边菜单宽度(展开时)">
-                                <el-input @input="onCommitState($event, 'menuWidth')" type="number" v-model="config.menuWidth">
+                                <el-input @input="onCommitState($event, 'menuWidth')" type="number" :step="10" v-model="config.menuWidth">
                                     <template #append>px</template>
                                 </el-input>
                             </el-form-item>
@@ -128,7 +128,7 @@
                         <el-popconfirm @confirm="restoreDefault" title="确定要恢复全部配置到默认值吗?">
                             <template #reference>
                                 <div class="bd-center">
-                                    <el-button>恢复默认</el-button>
+                                    <el-button class="w80" type="info">恢复默认</el-button>
                                 </div>
                             </template>
                         </el-popconfirm>
@@ -289,5 +289,8 @@ const restoreDefault = (): boolean => {
             }
         }
     }
+}
+.w80 {
+    width: 90%;
 }
 </style>
