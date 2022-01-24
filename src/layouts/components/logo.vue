@@ -17,7 +17,7 @@ import { computed } from 'vue'
 import { useStore } from '/@/store'
 
 const store = useStore()
-const menuCollapse = computed(() => store.getters['config/menuCollapse'])
+const menuCollapse = computed(() => store.state.config.layout.menuCollapse)
 
 const onMenuCollapse = function () {
     store.commit('config/setAndCache', {

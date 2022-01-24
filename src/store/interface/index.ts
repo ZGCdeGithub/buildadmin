@@ -12,7 +12,7 @@ export interface ConfigStateTypes {
     layout: {
         layoutMode: string
         mainAnimation: string
-        menuWidth: string
+        menuWidth: number
         menuDefaultIcon: string
         menuCollapse: boolean
         menuUniqueOpened: boolean

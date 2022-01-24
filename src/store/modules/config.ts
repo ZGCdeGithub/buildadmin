@@ -12,22 +12,14 @@ interface setObj {
 
 // State 默认值 => 与缓存中存有的数据合并来赋初始值
 var state: ConfigStateTypes = {
-    // 默认语言，可选值<zh-cn|en>
-    defaultLang: 'zh-cn',
-    // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
-    fallbackLang: 'zh-cn',
-    // 支持的语言列表
-    langArray: [
-        { name: 'zh-cn', value: '中文简体' },
-        { name: 'en', value: 'English' },
-    ],
+    // 布局配置
     layout: {
         // 后台布局方式，可选值<Default|Classic|Streamline>
         layoutMode: 'Default',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
-        // 侧边菜单宽度(展开时)
-        menuWidth: '260px',
+        // 侧边菜单宽度(展开时)，单位px
+        menuWidth: 260,
         // 侧边菜单项默认图标
         menuDefaultIcon: 'el-icon-Minus',
         // 是否水平折叠收起菜单
@@ -49,6 +41,15 @@ var state: ConfigStateTypes = {
         // 顶栏激活项字体色
         headerBarTabActiveColor: '#000000',
     },
+    // 默认语言，可选值<zh-cn|en>
+    defaultLang: 'zh-cn',
+    // 当在默认语言包找不到翻译时，继续在 fallbackLang 语言包内查找翻译
+    fallbackLang: 'zh-cn',
+    // 支持的语言列表
+    langArray: [
+        { name: 'zh-cn', value: '中文简体' },
+        { name: 'en', value: 'English' },
+    ],
 }
 const baConfig = Local.get(CONFIG) || {}
 state = { ...state, ...baConfig }
@@ -57,10 +58,9 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
     namespaced: true,
     state,
     getters: {
-        menuCollapse: (state, getters) => {
-            let menuCollapse = state.layout.menuCollapse
-            useCssVar('--default-aside-width', ref(null)).value = menuCollapse ? '64px' : '260px'
-            return menuCollapse
+        menuWidth: (state) => {
+            // 菜单是否折叠
+            return state.layout.menuCollapse ? '64px' : state.layout.menuWidth + 'px'
         },
     },
     mutations: {
