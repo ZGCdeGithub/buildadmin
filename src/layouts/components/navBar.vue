@@ -12,7 +12,7 @@
             <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
         </div>
         <NavMenus />
-        <Contextmenu ref="contextmenuRef" :items="contextmenuItems" @contextmenuItemClick="onContextmenuItem" />
+        <Contextmenu ref="contextmenuRef" :items="state.contextmenuItems" @contextmenuItemClick="onContextmenuItem" />
     </div>
 </template>
 
@@ -44,14 +44,24 @@ const activeBoxStyle = reactive({
 })
 
 const contextmenuRef = ref()
-const contextmenuItems: ContextMenuItem[] = [
-    { name: 'refresh', label: '重新加载', icon: 'fa fa-refresh' },
-    { name: 'close', label: '关闭标签', icon: 'fa fa-times' },
-    { name: 'fullScreen', label: '当前标签全屏', icon: 'el-icon-FullScreen' },
-    { name: 'closeOther', label: '关闭其他标签', icon: 'fa fa-minus' },
-    { name: 'closeAll', label: '关闭全部标签', icon: 'fa fa-stop' },
-]
+const state: {
+    contextmenuItems: ContextMenuItem[]
+} = reactive({
+    contextmenuItems: [
+        { name: 'refresh', label: '重新加载', icon: 'fa fa-refresh' },
+        { name: 'close', label: '关闭标签', icon: 'fa fa-times' },
+        { name: 'fullScreen', label: '当前标签全屏', icon: 'el-icon-FullScreen' },
+        { name: 'closeOther', label: '关闭其他标签', icon: 'fa fa-minus' },
+        { name: 'closeAll', label: '关闭全部标签', icon: 'fa fa-stop' },
+    ],
+})
+
 const onContextmenu = (menu: viewMenu, el: MouseEvent) => {
+    // 禁用刷新
+    state.contextmenuItems[0].disabled = route.path !== menu.path
+    // 禁用关闭其他和关闭全部
+    state.contextmenuItems[4].disabled = state.contextmenuItems[3].disabled = store.state.navTabs.tabsView.length == 1 ? true : false
+
     const { clientX, clientY } = el
     contextmenuRef.value.onShowContextmenu(menu, {
         x: clientX,

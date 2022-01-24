@@ -10,7 +10,7 @@
         >
             <ul class="el-dropdown-menu">
                 <template v-for="(item, idx) in props.items" :key="idx">
-                    <li class="el-dropdown-menu__item" tabindex="-1" @click="onContextmenuItem(item)">
+                    <li class="el-dropdown-menu__item" :class="item.disabled ? 'is-disabled' : ''" tabindex="-1" @click="onContextmenuItem(item)">
                         <Icon size="12" :name="item.icon" />
                         <span>{{ item.label }}</span>
                     </li>
@@ -62,6 +62,7 @@ defineExpose({
 })
 
 const onContextmenuItem = (item: ContextmenuItemClickEmitArg) => {
+    if (item.disabled) return
     item.menu = toRaw(state.menu) as viewMenu
     emits('contextmenuItemClick', item)
 }
@@ -93,7 +94,7 @@ onUnmounted(() => {
 .el-dropdown-menu__item .icon {
     margin-right: 5px;
 }
-.el-dropdown-menu__item:hover {
+.el-dropdown-menu__item:not(.is-disabled) {
     &:hover {
         background-color: var(--el-dropdown-menuItem-hover-fill);
         color: var(--el-dropdown-menuItem-hover-color);

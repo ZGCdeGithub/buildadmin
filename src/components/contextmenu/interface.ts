@@ -9,7 +9,7 @@ export interface ContextMenuItem {
     name: string
     label: string
     icon?: string
-    disabled?: boolean // 此参数暂未实现,用不上但设计上
+    disabled?: boolean
 }
 
 export interface ContextmenuItemClickEmitArg extends ContextMenuItem {

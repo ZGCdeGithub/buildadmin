@@ -66,7 +66,7 @@
             <Icon class="nav-menu-icon" name="fa fa-cogs" size="18" />
         </div>
         <div class="layout-drawer">
-            <el-drawer v-model="state.showLayoutDrawer" title="布局配置" size="18%">
+            <el-drawer v-model="state.showLayoutDrawer" title="布局配置" size="260px">
                 <el-divider border-style="dashed">布局风格</el-divider>
             </el-drawer>
         </div>
