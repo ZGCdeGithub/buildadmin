@@ -1,11 +1,12 @@
 <template>
-    <div class="layout-logo">
+    <div :style="{ backgroundColor: menuTopBarBackground }" class="layout-logo">
         <img v-if="!menuCollapse" class="logo-img" src="~assets/logo.png" alt="logo" />
-        <div v-if="!menuCollapse" class="website-name">BuildAdmin</div>
+        <div v-if="!menuCollapse" :style="{ color: menuActiveColor }" class="website-name">BuildAdmin</div>
         <Icon
             @click="onMenuCollapse"
             :name="menuCollapse ? 'fa fa-indent' : 'fa fa-dedent'"
             :class="menuCollapse ? 'unfold' : ''"
+            :color="menuActiveColor"
             size="18"
             class="fold"
         />
@@ -18,6 +19,8 @@ import { useStore } from '/@/store'
 
 const store = useStore()
 const menuCollapse = computed(() => store.state.config.layout.menuCollapse)
+const menuTopBarBackground = computed(() => store.state.config.layout.menuTopBarBackground)
+const menuActiveColor = computed(() => store.state.config.layout.menuActiveColor)
 
 const onMenuCollapse = function () {
     store.commit('config/setAndCache', {
@@ -46,7 +49,6 @@ const onMenuCollapse = function () {
     font-weight: 600;
 }
 .fold {
-    color: var(--color-primary) !important;
     margin-left: auto;
 }
 .unfold {

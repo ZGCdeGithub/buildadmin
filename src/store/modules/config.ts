@@ -22,9 +22,11 @@ var state: ConfigStateTypes = {
         /* 侧边菜单 */
         // 侧边菜单背景色
         menuBackground: '#ffffff',
+        // 侧边菜单文字颜色
+        menuColor: '#303133',
         // 侧边菜单激活项背景色
         menuActiveBackground: '#ffffff',
-        // 侧边菜单激活项字体色
+        // 侧边菜单激活项文字色
         menuActiveColor: '#409eff',
         // 侧边菜单顶栏背景色
         menuTopBarBackground: '#fcfcfc',
@@ -38,9 +40,11 @@ var state: ConfigStateTypes = {
         menuUniqueOpened: false,
 
         /* 顶栏 */
+        // 顶栏文字色
+        headerBarTabColor: '#000000',
         // 顶栏激活项背景色
         headerBarTabActiveBackground: '#ffffff',
-        // 顶栏激活项字体色
+        // 顶栏激活项文字色
         headerBarTabActiveColor: '#000000',
         // 顶栏背景色(若布局需要才使用)
         headerBarBackground: '#ffffff',
@@ -98,6 +102,9 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
                 baConfig[name[0]][name[1]] = data.value
             } else {
                 state[data.name] = baConfig[data.name] = data.value
+            }
+            if (baConfig.layout) {
+                baConfig.layout.showDrawer = false
             }
             Local.set(CONFIG, baConfig)
         },

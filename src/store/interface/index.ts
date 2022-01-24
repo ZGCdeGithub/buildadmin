@@ -18,9 +18,11 @@ export interface ConfigStateTypes {
         menuCollapse: boolean
         menuUniqueOpened: boolean
         menuBackground: string
+        menuColor: string
         menuActiveBackground: string
         menuActiveColor: string
         menuTopBarBackground: string
+        headerBarTabColor: string
         headerBarBackground: string
         headerBarTabActiveBackground: string
         headerBarTabActiveColor: string

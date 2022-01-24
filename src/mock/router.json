@@ -38,7 +38,23 @@
     {
         "title": "百度",
         "path": "https://baidu.com",
-        "type": "link"
+        "type": "link",
+        "children": [
+            {
+                "title": "系统设置1",
+                "path": "/admin/routine/config/111",
+                "type": "tab",
+                "icon": "fa fa-cogs",
+                "keepAlive": false
+            },
+            {
+                "title": "系统设置2",
+                "path": "/admin/routine/config/222",
+                "type": "tab",
+                "icon": "fa fa-cogs",
+                "keepAlive": false
+            }
+        ]
     },
     {
         "title": "简书",

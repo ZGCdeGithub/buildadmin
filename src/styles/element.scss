@@ -2,6 +2,9 @@
 .el-input--large .el-input__inner {
     line-height: 38px;
 }
+.el-input--default .el-input__inner {
+    line-height: 30px;
+}
 
 .el-divider__text.is-center {
     transform: translateX(-50%) translateY(-62%);

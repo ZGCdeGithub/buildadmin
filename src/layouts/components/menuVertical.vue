@@ -7,7 +7,9 @@
             :unique-opened="layoutConfig.menuUniqueOpened"
             :default-active="state.defaultActive"
             :collapse="layoutConfig.menuCollapse"
-            background-color="transparent"
+            :background-color="layoutConfig.menuBackground"
+            :text-color="layoutConfig.menuColor"
+            :active-text-color="layoutConfig.menuActiveColor"
         >
             <MenuTree :menus="menus" />
         </el-menu>

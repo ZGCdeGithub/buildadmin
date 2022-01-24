@@ -2,7 +2,13 @@
     <div class="nav-bar">
         <div class="nav-tabs">
             <template v-for="(item, idx) in tabsView">
-                <div @click="router.push(item.path)" @contextmenu.prevent="onContextmenu(item, $event)" class="bd-nav-tab" :ref="tabsRefs.set">
+                <div
+                    @click="router.push(item.path)"
+                    @contextmenu.prevent="onContextmenu(item, $event)"
+                    class="bd-nav-tab"
+                    :class="activeIndex == idx ? 'active' : ''"
+                    :ref="tabsRefs.set"
+                >
                     {{ item.title }}
                     <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
                         <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
@@ -17,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, nextTick, onMounted, ref } from 'vue'
+import { reactive, nextTick, onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
 import { useStore } from '/@/store'
 import { viewMenu } from '/@/store/interface'
@@ -42,6 +48,9 @@ const activeBoxStyle = reactive({
     width: '0',
     transform: 'translateX(0px)',
 })
+const headerBarTabColor = computed(() => store.state.config.layout.headerBarTabColor)
+const headerBarTabActiveColor = computed(() => store.state.config.layout.headerBarTabActiveColor)
+const headerBarTabActiveBackground = computed(() => store.state.config.layout.headerBarTabActiveBackground)
 
 const contextmenuRef = ref()
 const state: {
@@ -164,6 +173,8 @@ onMounted(() => {
             z-index: 1;
             height: 100%;
             user-select: none;
+            opacity: 0.7;
+            color: v-bind(headerBarTabColor);
             .close-icon {
                 padding: 2px;
                 margin: 2px 0 0 4px;
@@ -173,15 +184,18 @@ onMounted(() => {
                 color: var(--color-sub-1) !important;
                 border-radius: 50%;
             }
-        }
-        .bd-nav-tab:hover {
-            color: var(--color-primary-sub-0);
+            &.active {
+                color: v-bind(headerBarTabActiveColor);
+            }
+            &:hover {
+                opacity: 1;
+            }
         }
         .nav-tabs-active-box {
             position: absolute;
             height: 40px;
             border-radius: var(--el-border-radius-base);
-            background-color: #fff;
+            background-color: v-bind(headerBarTabActiveBackground);
             box-shadow: var(--el-box-shadow-light);
             transition: all 0.2s;
             -webkit-transition: all 0.2s;
