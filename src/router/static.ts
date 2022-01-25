@@ -14,7 +14,6 @@ const staticRoutes: Array<RouteRecordRaw> = [
         component: () => import('/@/views/frontend/index.vue'),
         meta: {
             title: title('home'),
-            loading: true,
         },
     },
     {
@@ -58,7 +57,6 @@ const staticRoutes: Array<RouteRecordRaw> = [
         component: () => import('/@/views/backend/login.vue'),
         meta: {
             title: title('adminLogin'),
-            loading: true,
         },
     },
     {

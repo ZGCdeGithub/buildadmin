@@ -12,15 +12,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     NProgress.configure({ showSpinner: false })
     NProgress.start()
-    if (to.meta?.loading) {
+    if (!window.existLoading) {
         loading.show()
+        window.existLoading = true
     }
     next()
 })
 
 // 路由加载后
 router.afterEach((to, from) => {
-    if (to.meta?.loading) {
+    if (window.existLoading) {
         loading.hide()
     }
     NProgress.done()
