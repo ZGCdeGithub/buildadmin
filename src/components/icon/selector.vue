@@ -34,7 +34,7 @@
                 v-model="state.inputValue"
                 :size="size"
                 :disabled="disabled"
-                placeholder="输入图标名称以搜索"
+                placeholder="搜索图标"
                 ref="selectorInput"
                 @focus="onInputFocus"
                 @blur="onInputBlur"

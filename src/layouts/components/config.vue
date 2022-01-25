@@ -100,7 +100,7 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="侧边菜单默认图标">
-                                <selector @change="onCommitState($event, 'menuDefaultIcon')" />
+                                <selector @change="onCommitMenuDefaultIcon($event, 'menuDefaultIcon')" v-model="config.menuDefaultIcon" />
                             </el-form-item>
                             <el-form-item label="侧边菜单水平折叠">
                                 <el-switch @change="onCommitState($event, 'menuCollapse')" v-model="config.menuCollapse"></el-switch>
@@ -169,6 +169,20 @@ const onCommitState = (value: any, name: string) => {
         name: 'layout.' + name,
         value: value,
     })
+}
+
+// 修改默认菜单图标
+const onCommitMenuDefaultIcon = (value: any, name: string) => {
+    store.commit('config/setAndCache', {
+        name: 'layout.' + name,
+        value: value,
+    })
+
+    const menus = store.state.navTabs.tabsViewRoutes
+    store.dispatch('navTabs/setTabsViewRoutes', [])
+    setTimeout(() => {
+        store.dispatch('navTabs/setTabsViewRoutes', menus)
+    }, 200)
 }
 
 const onCloseDrawer = () => {
