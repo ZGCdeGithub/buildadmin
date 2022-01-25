@@ -159,7 +159,7 @@ const renderFontIconNames = computed(() => {
 // 获取 input 的宽度
 const getInputWidth = () => {
     nextTick(() => {
-        state.selectorWidth = selectorInput.value.$el.offsetWidth
+        state.selectorWidth = selectorInput.value.$el.offsetWidth < 260 ? 260 : selectorInput.value.$el.offsetWidth
     })
 }
 

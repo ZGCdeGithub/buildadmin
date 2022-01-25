@@ -100,7 +100,7 @@
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="侧边菜单默认图标">
-                                <el-input @change="onCommitState($event, 'menuDefaultIcon')" type="text" v-model="config.menuDefaultIcon"></el-input>
+                                <selector @change="onCommitState($event, 'menuDefaultIcon')" />
                             </el-form-item>
                             <el-form-item label="侧边菜单水平折叠">
                                 <el-switch @change="onCommitState($event, 'menuCollapse')" v-model="config.menuCollapse"></el-switch>
@@ -157,6 +157,7 @@ import { useStore } from '/@/store/index'
 import { Local } from '/@/utils/storage'
 import { CONFIG } from '/@/store/constant/cacheKey'
 import { useRouter } from 'vue-router'
+import selector from '/@/components/icon/selector.vue'
 
 const store = useStore()
 const router = useRouter()
