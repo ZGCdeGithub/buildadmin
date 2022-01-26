@@ -20,7 +20,7 @@ const menuWidth = computed(() => store.getters['config/menuWidth'])
 <style lang="scss">
 .layout-aside {
     background: var(--color-basic-white);
-    margin: 16px;
+    margin: 16px 0 16px 16px;
     height: calc(100vh - 32px);
     box-shadow: var(--el-box-shadow-light);
     border-radius: var(--el-border-radius-base);

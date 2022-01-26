@@ -14,8 +14,7 @@ const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
 <style scoped>
 .layout-header {
     height: 40px;
-    margin: 20px 0 15px 0;
-    padding-left: 0;
-    padding-right: 10px;
+    margin: 20px var(--main-space) 0 var(--main-space);
+    padding: 0;
 }
 </style>
