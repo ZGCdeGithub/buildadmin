@@ -454,10 +454,10 @@ const initFileGrowthChart = () => {
         },
         radar: {
             indicator: [
-                { text: '图片', max: 400 },
-                { text: '文档', max: 400 },
-                { text: '表格', max: 400 },
-                { text: '压缩包', max: 400 },
+                { name: '图片' },
+                { name: '文档' },
+                { name: '表格' },
+                { name: '压缩包' },
             ],
         },
         series: (function () {
