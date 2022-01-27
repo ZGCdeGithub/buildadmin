@@ -1,26 +1,50 @@
 <template>
-    <el-popover :placement="placement" :width="state.selectorWidth" v-model:visible="state.popoverVisible">
-        <div @mouseover.stop="state.iconSelectorMouseover = true" @mouseout.stop="state.iconSelectorMouseover = false" class="icon-selector">
+    <el-popover
+        :placement="placement"
+        :width="state.selectorWidth"
+        v-model:visible="state.popoverVisible"
+    >
+        <div
+            @mouseover.stop="state.iconSelectorMouseover = true"
+            @mouseout.stop="state.iconSelectorMouseover = false"
+            class="icon-selector"
+        >
             <transition name="el-zoom-in-center">
                 <div class="icon-selector-box">
                     <div class="selector-header">
                         <div class="selector-title">{{ title }}</div>
                         <div class="selector-tab">
-                            <span title="Element Puls 图标" @click="onChangeTab('ele')" :class="state.iconType == 'ele' ? 'active' : ''">ele</span>
-                            <span title="Font Awesome 图标" @click="onChangeTab('awe')" :class="state.iconType == 'awe' ? 'active' : ''">awe</span>
-                            <span title="阿里 Iconfont 图标" @click="onChangeTab('ali')" :class="state.iconType == 'ali' ? 'active' : ''">ali</span>
+                            <span
+                                title="Element Puls 图标"
+                                @click="onChangeTab('ele')"
+                                :class="state.iconType == 'ele' ? 'active' : ''"
+                            >ele</span>
+                            <span
+                                title="Font Awesome 图标"
+                                @click="onChangeTab('awe')"
+                                :class="state.iconType == 'awe' ? 'active' : ''"
+                            >awe</span>
+                            <span
+                                title="阿里 Iconfont 图标"
+                                @click="onChangeTab('ali')"
+                                :class="state.iconType == 'ali' ? 'active' : ''"
+                            >ali</span>
                             <span
                                 title="本地图标:/src/assets/icons中的.svg"
                                 @click="onChangeTab('local')"
                                 :class="state.iconType == 'local' ? 'active' : ''"
-                                >local</span
-                            >
+                            >local</span>
                         </div>
                     </div>
                     <div class="selector-body">
                         <el-scrollbar ref="selectorScrollbarRef">
                             <div v-if="renderFontIconNames.length > 0">
-                                <div class="icon-selector-item" @click="onIcon(item)" v-for="(item, key) in renderFontIconNames" :key="key">
+                                <div
+                                    class="icon-selector-item"
+                                    @click="onIcon(item)"
+                                    v-for="(item, key) in renderFontIconNames"
+                                    :key="key"
+                                >
                                     <Icon :name="item" />
                                 </div>
                             </div>
@@ -40,7 +64,10 @@
                 @blur="onInputBlur"
             >
                 <template #prepend>
-                    <Icon :key="'icon' + state.iconKey" :name="state.prependIcon ? state.prependIcon : state.defaultModelValue" />
+                    <Icon
+                        :key="'icon' + state.iconKey"
+                        :name="state.prependIcon ? state.prependIcon : state.defaultModelValue"
+                    />
                 </template>
                 <template #append>
                     <Icon @click="onInputRefresh" name="el-icon-RefreshRight" />
@@ -54,11 +81,13 @@
 import { reactive, ref, onMounted, nextTick, onUnmounted, watch, computed } from 'vue'
 import { getAwesomeIconfontNames, getIconfontNames, getElementPlusIconfontNames, getLocalIconfontNames } from '/@/utils/iconfont'
 
+type IconType = 'ele' | 'awe' | 'ali' | 'local'
+
 interface Props {
     size?: 'default' | 'small' | 'large'
     disabled?: boolean
     title?: string
-    type?: 'ele' | 'awe' | 'ali' | 'local'
+    type?: IconType
     placement?: string
     modelValue?: string
 }
@@ -79,7 +108,7 @@ const emits = defineEmits<{
 const selectorInput = ref()
 const selectorScrollbarRef = ref()
 const state: {
-    iconType: 'ele' | 'awe' | 'ali' | 'local'
+    iconType: IconType
     selectorWidth: number
     popoverVisible: boolean
     inputFocus: boolean
@@ -116,7 +145,7 @@ const onInputRefresh = () => {
     emits('update:modelValue', state.defaultModelValue)
     emits('change', state.defaultModelValue)
 }
-const onChangeTab = (name: 'ele' | 'awe' | 'ali' | 'local') => {
+const onChangeTab = (name: IconType) => {
     state.iconType = name
     state.fontIconNames = []
     if (name == 'ele') {
