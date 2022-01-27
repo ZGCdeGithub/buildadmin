@@ -3,7 +3,11 @@
         <el-row :gutter="20">
             <el-col :span="10">
                 <div class="admin-info">
-                    <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false">
+                    <el-upload
+                        class="avatar-uploader"
+                        action="https://jsonplaceholder.typicode.com/posts/"
+                        :show-file-list="false"
+                    >
                         <img src="~assets/avatar.png" class="avatar" />
                     </el-upload>
                     <div class="admin-info-base">
@@ -13,7 +17,12 @@
                         </div>
                     </div>
                     <div class="admin-info-form">
-                        <el-form label-position="top" :rules="rules" ref="formRef" :model="state.adminInfo">
+                        <el-form
+                            label-position="top"
+                            :rules="rules"
+                            ref="formRef"
+                            :model="state.adminInfo"
+                        >
                             <el-form-item label="用户名">
                                 <el-input disabled v-model="state.adminInfo.username"></el-input>
                             </el-form-item>
@@ -27,10 +36,18 @@
                                 <el-input placeholder="请输入手机号码" v-model="state.adminInfo.mobile"></el-input>
                             </el-form-item>
                             <el-form-item label="签名">
-                                <el-input placeholder="这家伙很懒，什么也没写" type="textarea" v-model="state.adminInfo.motto"></el-input>
+                                <el-input
+                                    placeholder="这家伙很懒，什么也没写"
+                                    type="textarea"
+                                    v-model="state.adminInfo.motto"
+                                ></el-input>
                             </el-form-item>
                             <el-form-item label="新密码" prop="password">
-                                <el-input type="password" placeholder="不修改请留空" v-model="state.adminInfo.password"></el-input>
+                                <el-input
+                                    type="password"
+                                    placeholder="不修改请留空"
+                                    v-model="state.adminInfo.password"
+                                ></el-input>
                             </el-form-item>
                             <el-form-item>
                                 <el-button type="primary" @click="onSubmit">保存修改</el-button>
@@ -41,7 +58,28 @@
                 </div>
             </el-col>
             <el-col :span="14">
-                <div class="admin-operation-record">222</div>
+                <el-card header="操作日志" shadow="never">
+                    <el-timeline>
+                        <el-timeline-item
+                            type="primary"
+                            icon="el-icon-Plus"
+                            size="large"
+                            timestamp="2018-04-12 20:46"
+                        >这里是内容</el-timeline-item>
+                        <el-timeline-item
+                            type="primary"
+                            icon="el-icon-Delete"
+                            size="large"
+                            timestamp="2018-04-12 20:46"
+                        >这里是内容</el-timeline-item>
+                        <el-timeline-item
+                            type="warning"
+                            icon="el-icon-Edit"
+                            size="large"
+                            timestamp="2018-04-12 20:46"
+                        >这里是内容</el-timeline-item>
+                    </el-timeline>
+                </el-card>
             </el-col>
         </el-row>
     </div>
@@ -110,9 +148,9 @@ const rules: any = reactive({
     ],
 })
 
-const onSubmit = () => {}
+const onSubmit = () => { }
 
-const onResetForm = () => {}
+const onResetForm = () => { }
 </script>
 
 <style scoped lang="scss">
@@ -163,10 +201,7 @@ const onResetForm = () => {}
         padding: 30px;
     }
 }
-
-.admin-operation-record {
-    height: 100px;
-    background-color: #fff;
-    border-radius: var(--el-border-radius-base);
+.el-card :deep(.el-timeline-item__icon) {
+    font-size: 10px;
 }
 </style>

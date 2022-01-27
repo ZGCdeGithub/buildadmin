@@ -289,12 +289,6 @@
 .growth-chart {
     margin: 22px 0;
 }
-.el-card {
-    border: none;
-}
-:deep(.el-card__header) {
-    border-bottom: 1px solid var(--color-sub-4);
-}
 
 .suspension:hover {
     -webkit-transform: translateY(-4px) scale(1.02);
