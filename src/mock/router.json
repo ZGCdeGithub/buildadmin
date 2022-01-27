@@ -7,31 +7,32 @@
         "keepAlive": "dashboard"
     },
     {
-        "title": "系统设置",
-        "path": "/admin/routine/config",
+        "title": "常规管理",
+        "path": "/admin/routine",
         "type": "tab",
         "icon": "fa fa-cogs",
         "keepAlive": false,
         "children": [
             {
-                "title": "系统设置1",
-                "path": "/admin/routine/config/111",
+                "title": "系统设置",
+                "path": "/admin/routine/config",
                 "type": "tab",
                 "icon": "fa fa-cogs",
                 "keepAlive": false
             },
             {
-                "title": "系统设置2",
+                "title": "图标管理",
                 "path": "/admin/routine/config/222",
                 "type": "tab",
-                "icon": "fa fa-cogs",
+                "icon": "fa fa-eercast",
                 "keepAlive": false
             },
             {
-                "title": "简书",
-                "path": "https://www.jianshu.com/p/120eaf50331c",
-                "type": "iframe",
-                "icon": "fa fa-cogs"
+                "title": "个人资料",
+                "path": "/admin/routine/adminInfo",
+                "type": "tab",
+                "icon": "fa fa-user",
+                "keepAlive": true
             }
         ]
     },

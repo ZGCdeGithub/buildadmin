@@ -42,6 +42,14 @@ const staticRoutes: Array<RouteRecordRaw> = [
                 },
             },
             {
+                path: 'routine/adminInfo',
+                name: 'routine/adminInfo',
+                component: () => import('/@/views/backend/routine/adminInfo.vue'),
+                meta: {
+                    title: '我的资料',
+                },
+            },
+            {
                 path: 'routine/config/:id?',
                 name: 'routine/config',
                 component: () => import('/@/views/backend/routine/config.vue'),
