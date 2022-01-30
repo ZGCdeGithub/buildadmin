@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <div class="default-main">
         <div class="banner">
             <el-row :gutter="10">
                 <el-col :span="18">
@@ -150,9 +150,6 @@
 </template>
 
 <style scoped lang="scss">
-.dashboard {
-    margin: 22px var(--main-space) 0 var(--main-space);
-}
 .welcome {
     height: 130px;
     transition: all 0.3s ease;

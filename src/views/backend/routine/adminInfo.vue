@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="default-main">
         <el-row :gutter="20">
             <el-col :span="10">
                 <div class="admin-info">
@@ -154,9 +154,6 @@ const onResetForm = () => { }
 </script>
 
 <style scoped lang="scss">
-.main {
-    margin: 22px var(--main-space) 0 var(--main-space);
-}
 .admin-info {
     background-color: #fff;
     border-radius: var(--el-border-radius-base);

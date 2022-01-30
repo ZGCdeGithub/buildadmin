@@ -44,6 +44,10 @@ body,
     justify-content: center;
 }
 
+.default-main {
+    margin: 22px var(--main-space) 0 var(--main-space);
+}
+
 /* 页面切换动画
 ------------------------------- */
 .slide-right-enter-active,
