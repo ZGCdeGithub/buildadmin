@@ -1,7 +1,7 @@
 <template>
     <div class="default-main">
         <el-row :gutter="20">
-            <el-col :span="10">
+            <el-col :span="11">
                 <div class="admin-info">
                     <el-upload
                         class="avatar-uploader"
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </el-col>
-            <el-col :span="14">
+            <el-col :span="13">
                 <el-card header="操作日志" shadow="never">
                     <el-timeline>
                         <el-timeline-item
