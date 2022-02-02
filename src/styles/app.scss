@@ -47,9 +47,66 @@ body,
 .default-main {
     margin: 22px var(--main-space) 0 var(--main-space);
 }
+.table-header-cell {
+    color: var(--color-text-primary);
+}
 
-/* 页面切换动画
-------------------------------- */
+/* 表格-s */
+.bd-table-box {
+    border-radius: var(--el-border-radius-round);
+    .table-header {
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        background-color: #ffffff;
+        border: 1px solid #f6f6f6;
+        border-bottom: none;
+        padding: 13px 15px;
+        font-size: 14px;
+    }
+    .table-operate {
+        padding: 4px 5px;
+        height: auto;
+    }
+    .data-table .el-button + .el-button {
+        margin-left: 6px;
+    }
+    .table-header-operate-text {
+        margin-left: 6px;
+    }
+    .table-operate .icon,
+    .table-header-operate .icon {
+        font-size: 14px !important;
+        color: #ffffff !important;
+    }
+    .table-search {
+        display: flex;
+        margin-left: auto;
+    }
+    .table-search-button-group {
+        display: flex;
+        margin-left: 12px;
+    }
+    .table-pagination {
+        display: flex;
+        justify-content: flex-end;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        background-color: #ffffff;
+        padding: 13px 15px;
+    }
+    .el-table {
+        --el-table-border-color: #f6f6f6;
+    }
+}
+/* 表格-e */
+
+/* 页面切换动画-s */
 .slide-right-enter-active,
 .slide-right-leave-active,
 .slide-left-enter-active,
@@ -73,3 +130,4 @@ body,
 .slide-left-leave-to {
     @extend .slide-right-enter-from;
 }
+/* 页面切换动画-e */

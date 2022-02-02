@@ -57,6 +57,14 @@ const staticRoutes: Array<RouteRecordRaw> = [
                     title: '系统设置',
                 },
             },
+            {
+                path: 'table',
+                name: 'table',
+                component: () => import('/@/views/backend/table.vue'),
+                meta: {
+                    title: '表格示例',
+                },
+            },
         ],
     },
     {

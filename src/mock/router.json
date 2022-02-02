@@ -21,13 +21,6 @@
                 "keepAlive": false
             },
             {
-                "title": "图标管理",
-                "path": "/admin/routine/config/222",
-                "type": "tab",
-                "icon": "fa fa-eercast",
-                "keepAlive": false
-            },
-            {
                 "title": "个人资料",
                 "path": "/admin/routine/adminInfo",
                 "type": "tab",
@@ -35,6 +28,13 @@
                 "keepAlive": true
             }
         ]
+    },
+    {
+        "title": "表格示例",
+        "path": "/admin/table",
+        "type": "tab",
+        "icon": "fa fa-cogs",
+        "keepAlive": false
     },
     {
         "title": "百度",

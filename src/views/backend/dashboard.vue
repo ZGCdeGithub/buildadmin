@@ -349,6 +349,7 @@ import { CountUp } from 'countup.js'
 import * as echarts from 'echarts'
 import { store } from '/@/store'
 import { useTemplateRefsList } from '@vueuse/core'
+import 'element-plus/theme-chalk/display.css'
 
 const chartRefs = useTemplateRefsList<HTMLDivElement>()
 
