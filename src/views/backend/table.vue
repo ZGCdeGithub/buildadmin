@@ -1,6 +1,60 @@
 <template>
     <div class="default-main">
         <div class="bd-table-box">
+            <transition name="el-fade-in">
+                <div v-if="state.showComSearch" class="table-com-search">
+                    <el-row>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组角色组角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6">
+                            <div class="com-search-col">
+                                <div class="com-search-col-label">角色组</div>
+                                <div class="com-search-col-input">
+                                    <el-input placeholder="角色组"></el-input>
+                                </div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+            </transition>
             <div class="table-header">
                 <el-tooltip content="刷新" placement="top">
                     <el-button color="#9ca8b8" class="table-header-operate" type="info">
@@ -25,7 +79,11 @@
                         <el-button color="#dcdfe6" plain>
                             <Icon size="14" color="#303133" name="el-icon-Grid" />
                         </el-button>
-                        <el-button color="#dcdfe6" plain>
+                        <el-button
+                            @click="state.showComSearch = !state.showComSearch"
+                            color="#dcdfe6"
+                            plain
+                        >
                             <Icon size="14" color="#303133" name="el-icon-Search" />
                         </el-button>
                     </el-button-group>
@@ -74,6 +132,7 @@
 import { reactive } from 'vue';
 
 const state = reactive({
+    showComSearch: false,
     searchKeyWord: '',
 })
 const tableData = [
@@ -102,5 +161,4 @@ const tableData = [
 </script>
 
 <style lang="scss" scoped>
-
 </style>
