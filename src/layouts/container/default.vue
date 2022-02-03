@@ -11,10 +11,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Aside from '/@/layouts/components/aside.vue'
-import Header from '/@/layouts/components/header.vue'
+import Aside from '../backend/components/aside.vue'
+import Header from '../backend/components/header.vue'
 import Main from '/@/layouts/router-view/main.vue'
-import CloseFullScreen from '/@/layouts/components/closeFullScreen.vue'
+import CloseFullScreen from '../backend/components/closeFullScreen.vue'
 import { useStore } from '/@/store/index'
 
 const store = useStore()

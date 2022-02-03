@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useStore } from '/@/store'
-import NavBar from '/@/layouts/components/navBar.vue'
+import NavBar from './navBar.vue'
 
 const store = useStore()
 const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)

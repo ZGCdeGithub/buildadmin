@@ -23,7 +23,7 @@ onMounted(() => {
 })
 /*
  * 鼠标滑到顶部显示关闭全屏按钮
- * 要检查 hover 的元素在外部，直接使用事件而不是css好了
+ * 要检查 hover 的元素在外部，直接使用事件而不是css
  */
 const onMouseover = () => {
     state.closeBoxTop = 20

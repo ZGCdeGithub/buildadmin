@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, ref } from 'vue'
-import MenuTree from '/@/layouts/components/menuTree.vue'
+import MenuTree from './menuTree.vue'
 import { useRoute, onBeforeRouteUpdate, RouteLocationNormalizedLoaded } from 'vue-router'
 import type { ElScrollbar } from 'element-plus'
 import { useStore } from '/@/store'
@@ -60,7 +60,9 @@ onBeforeRouteUpdate((to) => {
 </script>
 <style>
 .vertical-menus-scrollbar {
-    height: calc(100vh - 92px);
+    height: v-bind(
+        'layoutConfig.layoutMode == "Default" ? "calc(100vh - 92px)":"calc(100vh - 60px)"'
+    );
 }
 .layouts-menu-vertical {
     border: 0;

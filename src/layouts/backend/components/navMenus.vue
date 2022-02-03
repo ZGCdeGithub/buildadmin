@@ -76,7 +76,7 @@ import screenfull from 'screenfull'
 import { store } from '/@/store/index'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
-import Config from '/@/layouts/components/config.vue'
+import Config from './config.vue'
 
 const { t } = useI18n()
 
