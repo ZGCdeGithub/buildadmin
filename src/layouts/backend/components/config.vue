@@ -9,7 +9,7 @@
                             <el-row class="layout-mode-box-style-row" :gutter="10">
                                 <el-col :span="12">
                                     <div
-                                        @click="onCommitState('Default', 'layoutMode')"
+                                        @click="onCommitLayoutMode('Default', 'layoutMode')"
                                         class="layout-mode-style default"
                                         :class="config.layoutMode == 'Default' ? 'active' : ''"
                                     >
@@ -25,7 +25,7 @@
                                 </el-col>
                                 <el-col :span="12">
                                     <div
-                                        @click="onCommitState('Classic', 'layoutMode')"
+                                        @click="onCommitLayoutMode('Classic', 'layoutMode')"
                                         class="layout-mode-style classic"
                                         :class="config.layoutMode == 'Classic' ? 'active' : ''"
                                     >
@@ -43,7 +43,7 @@
                             <el-row :gutter="10">
                                 <el-col :span="12">
                                     <div
-                                        @click="onCommitState('Streamline', 'layoutMode')"
+                                        @click="onCommitLayoutMode('Streamline', 'layoutMode')"
                                         class="layout-mode-style streamline"
                                         :class="config.layoutMode == 'Streamline' ? 'active' : ''"
                                     >
@@ -169,6 +169,36 @@ const onCommitState = (value: any, name: string) => {
         name: 'layout.' + name,
         value: value,
     })
+}
+
+const onCommitLayoutMode = (value: any, name: string) => {
+    store.commit('config/setAndCache', {
+        name: 'layout.' + name,
+        value: value,
+    })
+
+    // 切换布局时，如果是为默认配色方案，对菜单激活背景色重新赋值
+    if (
+        value == 'Classic' &&
+        name == 'layoutMode' &&
+        config.value.headerBarBackground == '#ffffff' &&
+        config.value.headerBarBackground == '#ffffff'
+    ) {
+        store.commit('config/setAndCache', {
+            name: 'layout.headerBarTabActiveBackground',
+            value: '#f5f5f5',
+        })
+    } else if (
+        value == 'Default' &&
+        name == 'layoutMode' &&
+        config.value.headerBarBackground == '#ffffff' &&
+        config.value.headerBarTabActiveBackground == '#f5f5f5'
+    ) {
+        store.commit('config/setAndCache', {
+            name: 'layout.headerBarTabActiveBackground',
+            value: '#ffffff',
+        })
+    }
 }
 
 // 修改默认菜单图标

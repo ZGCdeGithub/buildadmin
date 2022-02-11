@@ -14,16 +14,19 @@ import NavMenus from '../navMenus.vue'
 const store = useStore()
 
 const headerBarTabColor = computed(() => store.state.config.layout.headerBarTabColor)
+const headerBarBackground = computed(() => store.state.config.layout.headerBarBackground)
+const headerBarHoverBackground = computed(() => store.state.config.layout.headerBarHoverBackground)
 const headerBarTabActiveColor = computed(() => store.state.config.layout.headerBarTabActiveColor)
 const headerBarTabActiveBackground = computed(() => store.state.config.layout.headerBarTabActiveBackground)
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .nav-bar {
     display: flex;
-    height: 40px;
+    height: 50px;
     width: 100%;
-    .nav-tabs {
+    background-color: v-bind(headerBarBackground);
+    :deep(.nav-tabs) {
         display: flex;
         height: 100%;
         position: relative;
@@ -36,8 +39,9 @@ const headerBarTabActiveBackground = computed(() => store.state.config.layout.he
             z-index: 1;
             height: 100%;
             user-select: none;
-            opacity: 0.7;
             color: v-bind(headerBarTabColor);
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
             .close-icon {
                 padding: 2px;
                 margin: 2px 0 0 4px;
@@ -51,15 +55,13 @@ const headerBarTabActiveBackground = computed(() => store.state.config.layout.he
                 color: v-bind(headerBarTabActiveColor);
             }
             &:hover {
-                opacity: 1;
+                background-color: v-bind(headerBarHoverBackground);
             }
         }
         .nav-tabs-active-box {
             position: absolute;
-            height: 40px;
-            border-radius: var(--el-border-radius-base);
+            height: 50px;
             background-color: v-bind(headerBarTabActiveBackground);
-            box-shadow: var(--el-box-shadow-light);
             transition: all 0.2s;
             -webkit-transition: all 0.2s;
         }

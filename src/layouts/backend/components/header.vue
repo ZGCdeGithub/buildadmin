@@ -19,3 +19,10 @@ export default {
     components: { DefaultNavBar, ClassicNavBar, StreamlineNavBar },
 }
 </script>
+
+<style scoped lang="scss">
+.layout-header {
+    height: auto;
+    padding: 0;
+}
+</style>

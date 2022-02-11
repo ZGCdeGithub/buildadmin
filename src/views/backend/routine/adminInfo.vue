@@ -1,7 +1,7 @@
 <template>
     <div class="default-main">
         <el-row :gutter="20">
-            <el-col :span="11">
+            <el-col :span="10">
                 <div class="admin-info">
                     <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false">
                         <img src="~assets/avatar.png" class="avatar" />
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </el-col>
-            <el-col :span="13">
+            <el-col :span="14">
                 <el-card header="操作日志" shadow="never">
                     <el-timeline>
                         <el-timeline-item type="primary" icon="el-icon-Plus" size="large" timestamp="2018-04-12 20:46">这里是内容</el-timeline-item>

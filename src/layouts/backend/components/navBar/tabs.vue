@@ -97,6 +97,8 @@ const closeTab = (route: viewMenu) => {
             selectNavTab(tabsRefs.value[activeIndex.value])
         })
     }
+
+    contextmenuRef.value.onHideContextmenu()
 }
 
 const onContextmenuItem = async (item: ContextmenuItemClickEmitArg) => {
@@ -148,5 +150,3 @@ onMounted(() => {
     updateTab(route)
 })
 </script>
-
-<style scoped lang="scss"></style>

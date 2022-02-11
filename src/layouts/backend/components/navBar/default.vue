@@ -18,17 +18,12 @@ const headerBarTabActiveColor = computed(() => store.state.config.layout.headerB
 const headerBarTabActiveBackground = computed(() => store.state.config.layout.headerBarTabActiveBackground)
 </script>
 
-<style lang="scss">
-.layout-header {
-    height: 40px;
-    margin: 20px var(--main-space) 0 var(--main-space);
-    padding: 0;
-}
+<style lang="scss" scoped>
 .nav-bar {
     display: flex;
     height: 40px;
-    width: 100%;
-    .nav-tabs {
+    margin: 20px var(--main-space) 0 var(--main-space);
+    :deep(.nav-tabs) {
         display: flex;
         height: 100%;
         position: relative;

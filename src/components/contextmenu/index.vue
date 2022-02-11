@@ -57,10 +57,6 @@ const onShowContextmenu = (menu: viewMenu, axis: Axis) => {
     state.show = true
 }
 
-defineExpose({
-    onShowContextmenu,
-})
-
 const onContextmenuItem = (item: ContextmenuItemClickEmitArg) => {
     if (item.disabled) return
     item.menu = toRaw(state.menu) as viewMenu
@@ -70,6 +66,12 @@ const onContextmenuItem = (item: ContextmenuItemClickEmitArg) => {
 const onHideContextmenu = () => {
     state.show = false
 }
+
+defineExpose({
+    onShowContextmenu,
+    onHideContextmenu,
+})
+
 onMounted(() => {
     document.body.addEventListener('click', onHideContextmenu)
 })
