@@ -91,6 +91,9 @@
                             <el-form-item label="侧边菜单激活项文字色">
                                 <el-color-picker @change="onCommitState($event, 'menuActiveColor')" v-model="config.menuActiveColor" />
                             </el-form-item>
+                            <el-form-item label="显示侧边菜单顶栏(LOGO栏)">
+                                <el-switch @change="onCommitState($event, 'menuShowTopBar')" v-model="config.menuShowTopBar"></el-switch>
+                            </el-form-item>
                             <el-form-item label="侧边菜单顶栏背景色">
                                 <el-color-picker @change="onCommitState($event, 'menuTopBarBackground')" v-model="config.menuTopBarBackground" />
                             </el-form-item>

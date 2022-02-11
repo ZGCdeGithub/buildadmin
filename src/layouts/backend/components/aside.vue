@@ -1,6 +1,6 @@
 <template>
     <el-aside v-if="!tabFullScreen" :class="layoutMode == 'Default' ? 'layout-aside-default' : 'layout-aside-classic'">
-        <Logo />
+        <Logo v-if="menuShowTopBar" />
         <MenuVertical />
     </el-aside>
 </template>
@@ -16,6 +16,7 @@ const store = useStore()
 const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
 const menuWidth = computed(() => store.getters['config/menuWidth'])
 const layoutMode = computed(() => store.state.config.layout.layoutMode)
+const menuShowTopBar = computed(() => store.state.config.layout.menuShowTopBar)
 </script>
 
 <style lang="scss">

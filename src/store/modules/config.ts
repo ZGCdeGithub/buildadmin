@@ -38,6 +38,8 @@ var state: ConfigStateTypes = {
         menuCollapse: false,
         // 是否只保持一个子菜单的展开(手风琴)
         menuUniqueOpened: false,
+        // 显示菜单栏顶栏(LOGO)
+        menuShowTopBar: true,
 
         /* 顶栏 */
         // 顶栏文字色

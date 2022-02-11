@@ -34,6 +34,17 @@ const state = reactive({
 
 const menus = computed(() => store.state.navTabs.tabsViewRoutes)
 const layoutConfig = computed(() => store.state.config.layout)
+const verticalMenusScrollbarHeight = computed(() => {
+    let menuTopBarHeight = 0
+    if (layoutConfig.value.menuShowTopBar) {
+        menuTopBarHeight = 50
+    }
+    if (layoutConfig.value.layoutMode == 'Default') {
+        return 'calc(100vh - ' + (32 + menuTopBarHeight) + 'px)'
+    } else {
+        return 'calc(100vh - ' + menuTopBarHeight + 'px)'
+    }
+})
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {
@@ -60,7 +71,7 @@ onBeforeRouteUpdate((to) => {
 </script>
 <style>
 .vertical-menus-scrollbar {
-    height: v-bind('layoutConfig.layoutMode == "Default" ? "calc(100vh - 82px)":"calc(100vh - 50px)"');
+    height: v-bind(verticalMenusScrollbarHeight);
 }
 .layouts-menu-vertical {
     border: 0;

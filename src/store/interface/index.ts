@@ -17,6 +17,7 @@ export interface ConfigStateTypes {
         menuDefaultIcon: string
         menuCollapse: boolean
         menuUniqueOpened: boolean
+        menuShowTopBar: boolean
         menuBackground: string
         menuColor: string
         menuActiveBackground: string
