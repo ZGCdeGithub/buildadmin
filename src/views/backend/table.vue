@@ -79,33 +79,17 @@
                         <el-button color="#dcdfe6" plain>
                             <Icon size="14" color="#303133" name="el-icon-Grid" />
                         </el-button>
-                        <el-button
-                            @click="state.showComSearch = !state.showComSearch"
-                            color="#dcdfe6"
-                            plain
-                        >
+                        <el-button @click="state.showComSearch = !state.showComSearch" color="#dcdfe6" plain>
                             <Icon size="14" color="#303133" name="el-icon-Search" />
                         </el-button>
                     </el-button-group>
                 </div>
             </div>
-            <el-table
-                header-cell-class-name="table-header-cell"
-                :border="true"
-                :data="tableData"
-                stripe
-                style="width: 100%"
-                class="data-table"
-            >
+            <el-table header-cell-class-name="table-header-cell" :border="true" :data="tableData" stripe style="width: 100%" class="data-table">
                 <el-table-column align="center" type="selection" />
                 <el-table-column align="center" prop="date" label="Date" />
                 <el-table-column align="center" prop="name" label="Name" />
-                <el-table-column
-                    align="center"
-                    :show-overflow-tooltip="true"
-                    prop="address"
-                    label="Address"
-                />
+                <el-table-column align="center" :show-overflow-tooltip="true" prop="address" label="Address" />
                 <el-table-column align="center" label="操作" width="100">
                     <template #default>
                         <el-tooltip content="编辑" placement="top">
@@ -129,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive } from 'vue'
 
 const state = reactive({
     showComSearch: false,
@@ -140,7 +124,7 @@ const tableData = [
         date: '2016-05-03',
         name: 'Tom',
         address: 'No. 189, Grove St, Los Angeles',
-        test: "test"
+        test: 'test',
     },
     {
         date: '2016-05-02',
@@ -160,5 +144,4 @@ const tableData = [
 ]
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

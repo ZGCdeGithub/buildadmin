@@ -10,12 +10,7 @@
                     <div class="label-tip">{{ item.tip }}</div>
                 </div>
             </template>
-            <el-radio
-                v-for="(r, rk) in item.content"
-                v-model="item.value"
-                :label="rk"
-                size="large"
-            >{{ r }}</el-radio>
+            <el-radio v-for="(r, rk) in item.content" v-model="item.value" :label="rk" size="large">{{ r }}</el-radio>
         </el-form-item>
         <el-form-item v-else-if="item.type == 'checkbox'">
             <template #label>
@@ -24,12 +19,7 @@
                     <div class="label-tip">{{ item.tip }}</div>
                 </div>
             </template>
-            <el-checkbox
-                v-for="(c, ck) in item.content"
-                v-model="item.content[ck]"
-                :label="ck"
-                size="large"
-            ></el-checkbox>
+            <el-checkbox v-for="(c, ck) in item.content" v-model="item.content[ck]" :label="ck" size="large"></el-checkbox>
         </el-form-item>
         <el-form-item v-else-if="item.type == 'switch'">
             <template #label>
@@ -41,9 +31,7 @@
             <el-switch v-model="item.value" />
         </el-form-item>
         <el-form-item v-else>
-            <div
-                class="label-not-support"
-            >暂不支持 {{ item.type }} 类型的表单组件，可自行于 `/@/src/components/formItem` 中增加逻辑</div>
+            <div class="label-not-support">暂不支持 {{ item.type }} 类型的表单组件，可自行于 `/@/src/components/formItem` 中增加逻辑</div>
         </el-form-item>
     </template>
 </template>
@@ -62,7 +50,7 @@ interface Props {
     items: formItem[]
 }
 const props = withDefaults(defineProps<Props>(), {
-    items: () => []
+    items: () => [],
 })
 </script>
 

@@ -54,21 +54,21 @@
                 "name": "switch",
                 "title": "开关",
                 "value": true,
-                "type":"switch",
+                "type": "switch",
                 "content": {},
                 "tip": "开关测试",
                 "rule": "",
-                "weigh":95
+                "weigh": 95
             },
             {
                 "name": "switch",
                 "title": "开关",
                 "value": true,
-                "type":"switch1",
+                "type": "switch1",
                 "content": {},
                 "tip": "开关测试",
                 "rule": "",
-                "weigh":95
+                "weigh": 95
             }
         ]
     },

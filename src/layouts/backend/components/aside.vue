@@ -1,8 +1,5 @@
 <template>
-    <el-aside
-        v-if="!tabFullScreen"
-        :class="layoutMode == 'Default' ? 'layout-aside-default' : 'layout-aside-classic'"
-    >
+    <el-aside v-if="!tabFullScreen" :class="layoutMode == 'Default' ? 'layout-aside-default' : 'layout-aside-classic'">
         <Logo />
         <MenuVertical />
     </el-aside>

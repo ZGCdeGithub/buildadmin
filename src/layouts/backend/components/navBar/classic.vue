@@ -16,7 +16,6 @@ const store = useStore()
 const headerBarTabColor = computed(() => store.state.config.layout.headerBarTabColor)
 const headerBarTabActiveColor = computed(() => store.state.config.layout.headerBarTabActiveColor)
 const headerBarTabActiveBackground = computed(() => store.state.config.layout.headerBarTabActiveBackground)
-
 </script>
 
 <style lang="scss">

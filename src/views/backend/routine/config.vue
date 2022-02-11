@@ -12,9 +12,7 @@
                 </el-form>
             </el-col>
             <el-col :span="10">
-                <el-card header="模块的配置入口将会显示在这里">
-                    模块配置
-                </el-card>
+                <el-card header="模块的配置入口将会显示在这里"> 模块配置 </el-card>
             </el-col>
         </el-row>
     </div>
@@ -25,7 +23,7 @@ import { reactive } from 'vue'
 import FormItem from '/@/components/formItem/index.vue'
 import config from '/@/mock/config.json'
 const form = reactive({
-    config
+    config,
 })
 
 const test = () => {

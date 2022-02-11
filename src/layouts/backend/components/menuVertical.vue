@@ -60,9 +60,7 @@ onBeforeRouteUpdate((to) => {
 </script>
 <style>
 .vertical-menus-scrollbar {
-    height: v-bind(
-        'layoutConfig.layoutMode == "Default" ? "calc(100vh - 92px)":"calc(100vh - 60px)"'
-    );
+    height: v-bind('layoutConfig.layoutMode == "Default" ? "calc(100vh - 92px)":"calc(100vh - 60px)"');
 }
 .layouts-menu-vertical {
     border: 0;

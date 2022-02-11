@@ -10,27 +10,17 @@
             >
                 {{ item.title }}
                 <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
-                    <Icon
-                        v-show="tabsView.length > 1"
-                        class="close-icon"
-                        @click.stop="closeTab(item)"
-                        size="15"
-                        name="el-icon-Close"
-                    />
+                    <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
                 </transition>
             </div>
         </template>
         <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
     </div>
-    <Contextmenu
-        ref="contextmenuRef"
-        :items="state.contextmenuItems"
-        @contextmenuItemClick="onContextmenuItem"
-    />
+    <Contextmenu ref="contextmenuRef" :items="state.contextmenuItems" @contextmenuItemClick="onContextmenuItem" />
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue';
+import { nextTick, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
 import { useState } from '/@/store/useMapper'
 import { useStore } from '/@/store'
@@ -159,5 +149,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>
