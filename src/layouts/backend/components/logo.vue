@@ -1,12 +1,13 @@
 <template>
-    <div :style="{ backgroundColor: menuTopBarBackground }" class="layout-logo">
-        <img v-if="!menuCollapse" class="logo-img" src="~assets/logo.png" alt="logo" />
-        <div v-if="!menuCollapse" :style="{ color: menuActiveColor }" class="website-name">BuildAdmin</div>
+    <div class="layout-logo">
+        <img v-if="!layoutConfig.menuCollapse" class="logo-img" src="~assets/logo.png" alt="logo" />
+        <div v-if="!layoutConfig.menuCollapse" :style="{ color: layoutConfig.menuActiveColor }" class="website-name">BuildAdmin</div>
         <Icon
+            v-if="layoutConfig.layoutMode != 'Streamline'"
             @click="onMenuCollapse"
-            :name="menuCollapse ? 'fa fa-indent' : 'fa fa-dedent'"
-            :class="menuCollapse ? 'unfold' : ''"
-            :color="menuActiveColor"
+            :name="layoutConfig.menuCollapse ? 'fa fa-indent' : 'fa fa-dedent'"
+            :class="layoutConfig.menuCollapse ? 'unfold' : ''"
+            :color="layoutConfig.menuActiveColor"
             size="18"
             class="fold"
         />
@@ -18,14 +19,12 @@ import { computed } from 'vue'
 import { useStore } from '/@/store'
 
 const store = useStore()
-const menuCollapse = computed(() => store.state.config.layout.menuCollapse)
-const menuTopBarBackground = computed(() => store.state.config.layout.menuTopBarBackground)
-const menuActiveColor = computed(() => store.state.config.layout.menuActiveColor)
+const layoutConfig = computed(() => store.state.config.layout)
 
 const onMenuCollapse = function () {
     store.commit('config/setAndCache', {
         name: 'layout.menuCollapse',
-        value: !menuCollapse.value,
+        value: !layoutConfig.value.menuCollapse,
     })
 }
 </script>
@@ -36,9 +35,10 @@ const onMenuCollapse = function () {
     height: 50px;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     padding: 10px;
-    background: var(--color-bg-2);
+    background: v-bind('layoutConfig.layoutMode != "Streamline" ? layoutConfig.menuTopBarBackground:"transparent"');
 }
 .logo-img {
     width: 28px;

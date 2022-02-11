@@ -8,7 +8,7 @@ import { computed } from 'vue'
 import { useStore } from '/@/store'
 import DefaultNavBar from './navBar/default.vue'
 import ClassicNavBar from './navBar/classic.vue'
-import StreamlineNavBar from './navBar/streamline.vue'
+import StreamlineNavBar from './menuHorizontal.vue'
 
 const store = useStore()
 const tabFullScreen = computed(() => store.state.navTabs.tabFullScreen)
