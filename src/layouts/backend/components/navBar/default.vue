@@ -21,7 +21,7 @@ const headerBarTabActiveBackground = computed(() => store.state.config.layout.he
 <style lang="scss" scoped>
 .nav-bar {
     display: flex;
-    height: 40px;
+    height: 50px;
     margin: 20px var(--main-space) 0 var(--main-space);
     :deep(.nav-tabs) {
         display: flex;
@@ -34,7 +34,6 @@ const headerBarTabActiveBackground = computed(() => store.state.config.layout.he
             padding: 0 20px;
             cursor: pointer;
             z-index: 1;
-            height: 100%;
             user-select: none;
             opacity: 0.7;
             color: v-bind(headerBarTabColor);

@@ -1,19 +1,19 @@
 <template>
-    <div class="nav-tabs">
-        <template v-for="(item, idx) in tabsView">
-            <div
-                @click="router.push(item.path)"
-                @contextmenu.prevent="onContextmenu(item, $event)"
-                class="bd-nav-tab"
-                :class="activeIndex == idx ? 'active' : ''"
-                :ref="tabsRefs.set"
-            >
-                {{ item.title }}
-                <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
-                    <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
-                </transition>
-            </div>
-        </template>
+    <div class="nav-tabs" ref="tabScrollbarRef">
+        <div
+            v-for="(item, idx) in tabsView"
+            @click="router.push(item.path)"
+            @contextmenu.prevent="onContextmenu(item, $event)"
+            class="bd-nav-tab"
+            :class="activeIndex == idx ? 'active' : ''"
+            :ref="tabsRefs.set"
+            :key="idx"
+        >
+            {{ item.title }}
+            <transition @after-leave="selectNavTab(tabsRefs[activeIndex])" name="el-fade-in">
+                <Icon v-show="tabsView.length > 1" class="close-icon" @click.stop="closeTab(item)" size="15" name="el-icon-Close" />
+            </transition>
+        </div>
         <div :style="activeBoxStyle" class="nav-tabs-active-box"></div>
     </div>
     <Contextmenu ref="contextmenuRef" :items="state.contextmenuItems" @contextmenuItemClick="onContextmenuItem" />
@@ -37,6 +37,7 @@ const store = useStore()
 const { activeIndex, activeRoute, tabsView } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView'])
 
 const { proxy } = useCurrentInstance()
+const tabScrollbarRef = ref()
 const tabsRefs = useTemplateRefsList<HTMLDivElement>()
 
 const contextmenuRef = ref()
@@ -75,6 +76,9 @@ const onContextmenu = (menu: viewMenu, el: MouseEvent) => {
 const selectNavTab = function (dom: HTMLDivElement) {
     activeBoxStyle.width = dom.clientWidth + 'px'
     activeBoxStyle.transform = `translateX(${dom.offsetLeft}px)`
+    let elOccupyWidth = dom.offsetLeft + dom.clientWidth + 10
+    let scrollLeft = elOccupyWidth - tabScrollbarRef.value.clientWidth
+    tabScrollbarRef.value.scrollTo(scrollLeft < 0 ? 0 : scrollLeft, 0)
 }
 
 const toLastTab = () => {
@@ -150,3 +154,38 @@ onMounted(() => {
     updateTab(route)
 })
 </script>
+
+<style scoped lang="scss">
+.nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-right: var(--main-space);
+    scrollbar-width: thin;
+    scrollbar-color: #dedfe1;
+
+    &::-webkit-scrollbar {
+        height: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+        border-radius: var(--el-border-radius-base);
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+            background: #dedfe1;
+            border-radius: var(--el-border-radius-base);
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: #c8c9cc;
+        }
+    }
+}
+.bd-nav-tab {
+    white-space: nowrap;
+    height: 40px;
+}
+</style>
