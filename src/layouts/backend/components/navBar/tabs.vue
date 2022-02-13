@@ -173,6 +173,7 @@ onMounted(() => {
         height: 5px;
     }
     &::-webkit-scrollbar-thumb {
+        background: #eaeaea;
         border-radius: var(--el-border-radius-base);
         box-shadow: none;
         -webkit-box-shadow: none;
@@ -181,12 +182,6 @@ onMounted(() => {
         background: v-bind('layoutConfig.layoutMode == "Default" ? "none":"layoutConfig.headerBarBackground"');
     }
     &:hover {
-        &::-webkit-scrollbar-thumb {
-            background: #dedfe1;
-            border-radius: var(--el-border-radius-base);
-            box-shadow: none;
-            -webkit-box-shadow: none;
-        }
         &::-webkit-scrollbar-thumb:hover {
             background: #c8c9cc;
         }

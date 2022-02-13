@@ -30,9 +30,6 @@ const headerBarTabActiveBackground = computed(() => store.state.config.layout.he
         display: flex;
         height: 100%;
         position: relative;
-        &::-webkit-scrollbar-thumb {
-            background: #dedfe1;
-        }
         .bd-nav-tab {
             display: flex;
             align-items: center;
