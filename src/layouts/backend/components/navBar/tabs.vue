@@ -166,8 +166,7 @@ onMounted(() => {
     overflow-x: auto;
     overflow-y: hidden;
     margin-right: var(--main-space);
-    scrollbar-width: thin;
-    scrollbar-color: #dedfe1;
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
         height: 5px;
