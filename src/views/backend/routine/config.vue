@@ -1,7 +1,7 @@
 <template>
     <div class="default-main">
         <el-row :gutter="20">
-            <el-col :span="14">
+            <el-col class="xs-mb-20" :xs="24" :sm="12">
                 <el-form v-model="form.config" label-position="top">
                     <el-tabs type="border-card">
                         <el-tab-pane v-for="(group, key) in form.config" :key="key" :label="group.title">
@@ -11,7 +11,7 @@
                     </el-tabs>
                 </el-form>
             </el-col>
-            <el-col :span="10">
+            <el-col :xs="24" :sm="10">
                 <el-card header="模块的配置入口将会显示在这里"> 模块配置 </el-card>
             </el-col>
         </el-row>
@@ -64,5 +64,10 @@ export default defineComponent({
     border: none;
     padding-left: 20px;
     background-color: #f5f5f5;
+}
+@media screen and (max-width: 768px) {
+    .xs-mb-20 {
+        margin-bottom: 20px;
+    }
 }
 </style>

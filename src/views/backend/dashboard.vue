@@ -2,7 +2,7 @@
     <div class="default-main">
         <div class="banner">
             <el-row :gutter="10">
-                <el-col :span="18">
+                <el-col :md="24" :lg="18">
                     <div class="welcome suspension">
                         <img class="welcome-img" :src="headerSvg" alt="" />
                         <div class="welcome-text">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="6">
+                <el-col :lg="6" class="hidden-md-and-down">
                     <div class="working">
                         <img class="working-coffee" :src="coffeeSvg" alt="" />
                         <div class="working-text">
@@ -26,8 +26,8 @@
             </el-row>
         </div>
         <div class="small-panel-box">
-            <el-row :gutter="10">
-                <el-col :span="6">
+            <el-row :gutter="20">
+                <el-col :sm="12" :lg="6">
                     <div class="small-panel user-reg suspension">
                         <div class="small-panel-title">会员注册量</div>
                         <div class="small-panel-content">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="12" :lg="6">
                     <div class="small-panel file suspension">
                         <div class="small-panel-title">附件上传量</div>
                         <div class="small-panel-content">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="12" :lg="6">
                     <div class="small-panel users suspension">
                         <div class="small-panel-title">会员总数</div>
                         <div class="small-panel-content">
@@ -63,7 +63,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="6">
+                <el-col :sm="12" :lg="6">
                     <div class="small-panel addons suspension">
                         <div class="small-panel-title">已装插件数</div>
                         <div class="small-panel-content">
@@ -78,18 +78,18 @@
             </el-row>
         </div>
         <div class="growth-chart">
-            <el-row :gutter="10">
-                <el-col :span="9">
+            <el-row :gutter="20">
+                <el-col class="lg-mb-20" :xs="24" :sm="24" :md="12" :lg="9">
                     <el-card shadow="hover" :header="'会员增长情况'">
                         <div class="user-growth-chart" :ref="chartRefs.set"></div>
                     </el-card>
                 </el-col>
-                <el-col :span="9">
+                <el-col class="lg-mb-20" :xs="24" :sm="24" :md="12" :lg="9">
                     <el-card shadow="hover" :header="'附件增长情况'">
                         <div class="file-growth-chart" :ref="chartRefs.set"></div>
                     </el-card>
                 </el-col>
-                <el-col :span="6">
+                <el-col :xs="24" :sm="24" :md="24" :lg="6">
                     <el-card class="new-user-card" shadow="hover" :header="'刚刚加入的会员'">
                         <div class="new-user-growth">
                             <el-scrollbar>
@@ -133,13 +133,13 @@
         </div>
 
         <div class="growth-chart">
-            <el-row :gutter="10">
-                <el-col :span="12">
+            <el-row :gutter="20">
+                <el-col class="lg-mb-20" :xs="24" :sm="24" :md="24" :lg="12">
                     <el-card shadow="hover" :header="'会员来源'">
                         <div class="user-source-chart" :ref="chartRefs.set"></div>
                     </el-card>
                 </el-col>
-                <el-col :span="12">
+                <el-col class="lg-mb-20" :xs="24" :sm="24" :md="24" :lg="12">
                     <el-card shadow="hover" :header="'会员姓氏'">
                         <div class="user-surname-chart" :ref="chartRefs.set"></div>
                     </el-card>
@@ -151,7 +151,6 @@
 
 <style scoped lang="scss">
 .welcome {
-    height: 130px;
     transition: all 0.3s ease;
     background: #e1eaf9;
     border-radius: 6px;
@@ -165,7 +164,7 @@
         user-select: none;
     }
     .welcome-title {
-        font-size: 26px;
+        font-size: 1.5rem;
         line-height: 30px;
         color: var(--color-primary-sub-0);
     }
@@ -227,25 +226,14 @@
     }
 }
 .small-panel-box {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .small-panel {
     background-color: #e9edf2;
     border-radius: var(--el-border-radius-base);
     transition: all 0.3s ease;
     padding: 25px;
-    /* &.user-reg {
-        background-color: #8595F4;
-    }
-    &.file {
-        background-color: #AD85F4;
-    }
-    &.users {
-        background-color: #F48595;
-    }
-    &.addons {
-        background-color: #74A8B5;
-    } */
+    margin-bottom: 20px;
     .small-panel-title {
         color: #92969a;
         font-size: 15px;
@@ -284,7 +272,7 @@
     }
 }
 .growth-chart {
-    margin: 22px 0;
+    margin-bottom: 20px;
 }
 
 .suspension:hover {
@@ -338,6 +326,17 @@
 }
 .new-user-card :deep(.el-card__body) {
     padding: 0;
+}
+
+@media screen and (max-width: 425px) {
+    .welcome-img {
+        display: none;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .lg-mb-20 {
+        margin-bottom: 20px;
+    }
 }
 </style>
 

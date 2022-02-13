@@ -45,10 +45,13 @@ body,
 }
 
 .default-main {
-    margin: 22px var(--main-space) 0 var(--main-space);
+    margin: var(--main-space) var(--main-space) 0 var(--main-space);
 }
-.table-header-cell {
+.table-header-cell .cell {
     color: var(--color-text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* 表格-s */
@@ -119,7 +122,8 @@ body,
     .table-search-button-group {
         display: flex;
         margin-left: 12px;
-        button:focus {
+        button:focus,
+        button:active {
             background-color: #ffffff;
         }
         button:hover {

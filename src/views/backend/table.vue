@@ -74,7 +74,7 @@
                     </el-button>
                 </el-tooltip>
                 <div class="table-search">
-                    <el-input v-model="state.searchKeyWord" placeholder="搜索" />
+                    <el-input class="xs-hidden" v-model="state.searchKeyWord" placeholder="搜索" />
                     <el-button-group class="table-search-button-group">
                         <el-button color="#dcdfe6" plain>
                             <Icon size="14" color="#303133" name="el-icon-Grid" />
@@ -88,6 +88,7 @@
             <el-table header-cell-class-name="table-header-cell" :border="true" :data="tableData" stripe style="width: 100%" class="data-table">
                 <el-table-column align="center" type="selection" />
                 <el-table-column align="center" prop="date" label="Date" />
+                <el-table-column align="center" prop="test" label="托尔斯泰" />
                 <el-table-column align="center" prop="name" label="Name" />
                 <el-table-column align="center" :show-overflow-tooltip="true" prop="address" label="Address" />
                 <el-table-column align="center" label="操作" width="100">
@@ -106,42 +107,54 @@
                 </el-table-column>
             </el-table>
             <div class="table-pagination">
-                <el-pagination background layout="prev, pager, next, jumper" :total="1000"></el-pagination>
+                <el-pagination background :layout="shrink ? 'prev, next, jumper' : 'prev, pager, next, jumper'" :total="1000"></el-pagination>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
+import { useStore } from '/@/store/index'
 
+const store = useStore()
 const state = reactive({
     showComSearch: false,
     searchKeyWord: '',
 })
+const shrink = computed(() => store.state.config.layout.shrink)
 const tableData = [
     {
         date: '2016-05-03',
         name: 'Tom',
+        test: '65945-66666666',
         address: 'No. 189, Grove St, Los Angeles',
-        test: 'test',
     },
     {
         date: '2016-05-02',
         name: 'Tom',
+        test: '测试',
         address: 'No. 189, Grove St, Los Angeles',
     },
     {
         date: '2016-05-04',
         name: 'Tom',
+        test: '测试',
         address: 'No. 189, Grove St, Los Angeles',
     },
     {
         date: '2016-05-01',
         name: 'Tom',
+        test: '测试',
         address: 'No. 189, Grove St, Los Angeles',
     },
 ]
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@media screen and (max-width: 768px) {
+    .xs-hidden {
+        display: none;
+    }
+}
+</style>
