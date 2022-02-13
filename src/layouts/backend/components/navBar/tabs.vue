@@ -29,6 +29,7 @@ import { useTemplateRefsList } from '@vueuse/core'
 import type { ContextMenuItem, ContextmenuItemClickEmitArg } from '/@/components/contextmenu/interface'
 import useCurrentInstance from '/@/utils/useCurrentInstance'
 import Contextmenu from '/@/components/contextmenu/index.vue'
+import horizontalScroll from '/@/utils/horizontalScroll'
 
 const route = useRoute()
 const router = useRouter()
@@ -76,9 +77,13 @@ const onContextmenu = (menu: viewMenu, el: MouseEvent) => {
 const selectNavTab = function (dom: HTMLDivElement) {
     activeBoxStyle.width = dom.clientWidth + 'px'
     activeBoxStyle.transform = `translateX(${dom.offsetLeft}px)`
-    let elOccupyWidth = dom.offsetLeft + dom.clientWidth + 10
-    let scrollLeft = elOccupyWidth - tabScrollbarRef.value.clientWidth
-    tabScrollbarRef.value.scrollTo(scrollLeft < 0 ? 0 : scrollLeft, 0)
+
+    let scrollLeft = dom.offsetLeft + dom.clientWidth - tabScrollbarRef.value.clientWidth
+    if (dom.offsetLeft < tabScrollbarRef.value.scrollLeft) {
+        tabScrollbarRef.value.scrollTo(dom.offsetLeft, 0)
+    } else if (scrollLeft > tabScrollbarRef.value.scrollLeft) {
+        tabScrollbarRef.value.scrollTo(scrollLeft, 0)
+    }
 }
 
 const toLastTab = () => {
@@ -152,6 +157,7 @@ onBeforeRouteUpdate(async (to, from) => {
 
 onMounted(() => {
     updateTab(route)
+    new horizontalScroll(tabScrollbarRef.value)
 })
 </script>
 
