@@ -113,6 +113,27 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
             Local.set(CONFIG, baConfig)
         },
     },
+    actions: {
+        setLayoutMode({ state, commit }, data) {
+            commit('setAndCache', {
+                name: 'layout.layoutMode',
+                value: data,
+            })
+
+            // 切换布局时，如果是为默认配色方案，对菜单激活背景色重新赋值
+            if (data == 'Classic' && state.layout.headerBarBackground == '#ffffff' && state.layout.headerBarBackground == '#ffffff') {
+                commit('setAndCache', {
+                    name: 'layout.headerBarTabActiveBackground',
+                    value: '#f5f5f5',
+                })
+            } else if (data == 'Default' && state.layout.headerBarBackground == '#ffffff' && state.layout.headerBarTabActiveBackground == '#f5f5f5') {
+                commit('setAndCache', {
+                    name: 'layout.headerBarTabActiveBackground',
+                    value: '#ffffff',
+                })
+            }
+        },
+    },
 }
 
 export default ConfigModule
