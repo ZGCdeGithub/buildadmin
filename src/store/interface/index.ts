@@ -11,6 +11,7 @@ export interface ConfigStateTypes {
     }[]
     layout: {
         showDrawer: boolean
+        shrink: boolean
         layoutMode: string
         mainAnimation: string
         menuWidth: number

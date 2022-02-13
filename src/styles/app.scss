@@ -141,6 +141,18 @@ body,
 }
 /* 表格-e */
 
+/* 全局遮罩-s */
+.bd-layout-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999990;
+}
+/* 全局遮罩-e */
+
 /* 页面切换动画-s */
 .slide-right-enter-active,
 .slide-right-leave-active,

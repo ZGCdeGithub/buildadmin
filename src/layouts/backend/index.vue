@@ -30,6 +30,10 @@ const onResize = () => {
             name: 'layout.menuCollapse',
             value: true,
         })
+        store.commit('config/setAndCache', {
+            name: 'layout.shrink',
+            value: true,
+        })
         store.dispatch('config/setLayoutMode', 'Classic')
     } else {
         let beforeResizeLayout = Session.get('beforeResizeLayout') ? Session.get('beforeResizeLayout') : defaultBeforeResizeLayout
@@ -37,6 +41,10 @@ const onResize = () => {
         store.commit('config/setAndCache', {
             name: 'layout.menuCollapse',
             value: beforeResizeLayout.menuCollapse,
+        })
+        store.commit('config/setAndCache', {
+            name: 'layout.shrink',
+            value: false,
         })
         store.dispatch('config/setLayoutMode', beforeResizeLayout.layoutMode)
     }

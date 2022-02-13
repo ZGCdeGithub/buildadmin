@@ -14,6 +14,8 @@ var state: ConfigStateTypes = {
     layout: {
         /* 全局 */
         showDrawer: false,
+        // 是否收缩布局(小屏设备)
+        shrink: false,
         // 后台布局方式，可选值<Default|Classic|Streamline>
         layoutMode: 'Default',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
@@ -71,6 +73,9 @@ const ConfigModule: Module<ConfigStateTypes, RootStateTypes> = {
     state,
     getters: {
         menuWidth: (state) => {
+            if (state.layout.shrink) {
+                return state.layout.menuCollapse ? '0px' : state.layout.menuWidth + 'px'
+            }
             // 菜单是否折叠
             return state.layout.menuCollapse ? '64px' : state.layout.menuWidth + 'px'
         },
