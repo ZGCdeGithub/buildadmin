@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter, onBeforeRouteUpdate, RouteLocationNormalized } from 'vue-router'
 import { useState } from '/@/store/useMapper'
 import { useStore } from '/@/store'
@@ -36,6 +36,7 @@ const router = useRouter()
 const store = useStore()
 
 const { activeIndex, activeRoute, tabsView } = useState('navTabs', ['activeIndex', 'activeRoute', 'tabsView'])
+const layoutConfig = computed(() => store.state.config.layout)
 
 const { proxy } = useCurrentInstance()
 const tabScrollbarRef = ref()
@@ -172,10 +173,12 @@ onMounted(() => {
         height: 5px;
     }
     &::-webkit-scrollbar-thumb {
-        background: transparent;
         border-radius: var(--el-border-radius-base);
         box-shadow: none;
         -webkit-box-shadow: none;
+    }
+    &::-webkit-scrollbar-track {
+        background: v-bind('layoutConfig.layoutMode == "Default" ? "none":"layoutConfig.headerBarBackground"');
     }
     &:hover {
         &::-webkit-scrollbar-thumb {
