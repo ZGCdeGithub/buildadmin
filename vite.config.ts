@@ -4,7 +4,7 @@ import type { UserConfig } from 'vite'
 import { isProd, loadEnv } from '/@/utils/vite'
 import { svgBuilder } from '/@/components/icon/svg/index'
 
-const { VITE_PORT, VITE_OPEN, VITE_PUBLIC_PATH } = loadEnv()
+const { VITE_PORT, VITE_OPEN, VITE_BASE_PATH, VITE_OUT_DIR } = loadEnv()
 
 const pathResolve = (dir: string): any => {
     return resolve(__dirname, '.', dir)
@@ -21,11 +21,33 @@ const viteConfig: UserConfig = {
     plugins: [vue(), svgBuilder('./src/assets/icons/')],
     root: process.cwd(),
     resolve: { alias },
-    base: isProd(process.env.NODE_ENV) ? VITE_PUBLIC_PATH : './',
+    base: VITE_BASE_PATH,
     server: {
         host: '0.0.0.0',
         port: VITE_PORT,
         open: VITE_OPEN,
+    },
+    build: {
+        sourcemap: false,
+        outDir: VITE_OUT_DIR,
+        emptyOutDir: true,
+        chunkSizeWarningLimit: 1500,
+    },
+    css: {
+        postcss: {
+            plugins: [
+                {
+                    postcssPlugin: 'internal:charset-removal',
+                    AtRule: {
+                        charset: (atRule) => {
+                            if (atRule.name === 'charset') {
+                                atRule.remove()
+                            }
+                        },
+                    },
+                },
+            ],
+        },
     },
 }
 

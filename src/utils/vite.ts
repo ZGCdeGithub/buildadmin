@@ -4,7 +4,8 @@ import dotenv from 'dotenv'
 export interface ViteEnv {
     VITE_PORT: number
     VITE_OPEN: boolean
-    VITE_PUBLIC_PATH: string
+    VITE_BASE_PATH: string
+    VITE_OUT_DIR: string
 }
 
 export function isDev(mode: string): boolean {
